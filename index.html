@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Профком студентів НМУ імені О.О. Богомольця — Офіційний веб-сайт</title>
+  <title data-i18n="doc.title">Профком студентів НМУ імені О.О. Богомольця — Офіційний веб-сайт</title>
   
   <!-- Primary Meta Tags -->
-  <meta name="description" content="Офіційний веб-сайт Первинної профспілкової організації студентів Національного медичного університету імені О.О. Богомольця. Захист прав, соціальні стипендії, знижки на гуртожитки, квитки, клуби та активне студентське життя.">
+  <meta name="description" content="Офіційний веб-сайт Первинної профспілкової організації студентів Національного медичного університету імені О.О. Богомольця. Захист прав, соціальні стипендії, знижки на гуртожитки, квитки, клуби та студентське життя.">
   <meta name="keywords" content="Профком НМУ, студенти НМУ, стипендії НМУ, гуртожиток НМУ, Богомольця, студентське самоврядування, ISIC">
   
   <!-- Open Graph / Social Media -->
@@ -18,6 +18,15 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="./assets/images/profkom_logo_transparent.png">
   
+  <!-- Theme Color-Scheme Support (FOUC Prevention) -->
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('nmu_theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -41,31 +50,58 @@
       <a href="#" class="brand-wrapper">
         <img src="./assets/images/profkom_logo_transparent.png" alt="Емблема Профкому НМУ" class="brand-logo-img">
         <div class="brand-titles">
-          <span class="brand-name font-druk">ПРОФКОМ НМУ</span>
-          <span class="brand-sub">СИЛА ТА ОПОРА СТУДЕНТІВ</span>
+          <span class="brand-name font-druk" data-i18n="brand.name">ПРОФКОМ НМУ</span>
+          <span class="brand-sub" data-i18n="brand.sub">СИЛА ТА ОПОРА СТУДЕНТІВ</span>
         </div>
       </a>
 
       <!-- Desktop Navigation Menu -->
       <nav class="desktop-nav" aria-label="Основна навігація">
-        <a href="#about" class="nav-link">Про нас</a>
-        <a href="#benefits" class="nav-link">Переваги</a>
-        <a href="#services" class="nav-link">Пільги & Стипендії</a>
-        <a href="#leadership" class="nav-link">Команда</a>
-        <a href="#commissions" class="nav-link">Комісії</a>
-        <a href="#clubs" class="nav-link">Клуби</a>
-        <a href="#contact" class="nav-link">Контакти</a>
+        <a href="#about" class="nav-link" data-i18n="nav.about">Про нас</a>
+        <a href="#benefits" class="nav-link" data-i18n="nav.benefits">Переваги</a>
+        <a href="#services" class="nav-link" data-i18n="nav.services">Пільги & Стипендії</a>
+        <a href="#leadership" class="nav-link" data-i18n="nav.leadership">Команда</a>
+        <a href="#commissions" class="nav-link" data-i18n="nav.commissions">Комісії</a>
+        <a href="#clubs" class="nav-link" data-i18n="nav.clubs">Клуби</a>
+        <a href="#contact" class="nav-link" data-i18n="nav.contact">Контакти</a>
       </nav>
 
       <!-- Header Action & Live Beacon -->
       <div class="header-actions">
+        <!-- Language Switcher (UA / EN) -->
+        <div class="lang-switch" role="group" aria-label="Language switcher">
+          <button class="lang-btn active" data-lang="uk">UA</button>
+          <span class="lang-sep">|</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <!-- Light / Dark Theme Toggle -->
+        <button class="theme-toggle-btn" aria-label="Змінити тему" title="Змінити тему">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="23" y1="12" x2="25" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
         <div class="status-badge" title="Прийомні години: Пн, Чт з 15:00">
           <span class="status-indicator"></span>
-          <span>Каб. 438 • Пн, Чт</span>
+          <span data-i18n="nav.officeHours">Каб. 438 • Пн, Чт</span>
         </div>
-        <button class="btn btn-primary btn-sm btn-druk" data-open-modal="modal-apply">
+
+        <button class="btn btn-primary btn-sm btn-druk" data-open-modal="modal-apply" data-i18n="nav.applyBtn">
           ВСТУПИТИ
         </button>
+
         <button class="mobile-toggle" aria-label="Відкрити меню" aria-expanded="false">
           <span></span>
           <span></span>
@@ -77,24 +113,49 @@
 
   <!-- Mobile Overlay Menu -->
   <div class="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-links">
-      <a href="#about" class="mobile-menu-link">Про нас</a>
-      <a href="#benefits" class="mobile-menu-link">Переваги</a>
-      <a href="#services" class="mobile-menu-link">Пільги & Стипендії</a>
-      <a href="#leadership" class="mobile-menu-link">Команда</a>
-      <a href="#commissions" class="mobile-menu-link">Комісії</a>
-      <a href="#clubs" class="mobile-menu-link">Клуби</a>
-      <a href="#contact" class="mobile-menu-link">Контакти</a>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border-subtle);">
+      <div class="lang-switch" role="group" aria-label="Language selection">
+        <button class="lang-btn active" data-lang="uk">UA</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <button class="theme-toggle-btn" aria-label="Змінити тему" title="Змінити тему">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="23" y1="12" x2="25" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
     </div>
+
+    <div class="mobile-menu-links">
+      <a href="#about" class="mobile-menu-link" data-i18n="nav.about">Про нас</a>
+      <a href="#benefits" class="mobile-menu-link" data-i18n="nav.benefits">Переваги</a>
+      <a href="#services" class="mobile-menu-link" data-i18n="nav.services">Пільги & Стипендії</a>
+      <a href="#leadership" class="mobile-menu-link" data-i18n="nav.leadership">Команда</a>
+      <a href="#commissions" class="mobile-menu-link" data-i18n="nav.commissions">Комісії</a>
+      <a href="#clubs" class="mobile-menu-link" data-i18n="nav.clubs">Клуби</a>
+      <a href="#contact" class="mobile-menu-link" data-i18n="nav.contact">Контакти</a>
+    </div>
+
     <div style="display: flex; flex-direction: column; gap: 12px;">
-      <button class="btn btn-primary btn-lg btn-druk" data-open-modal="modal-apply">ПОДАТИ ЗАЯВУ ОНЛАЙН</button>
-      <a href="https://t.me/Profkom_NMU" target="_blank" class="btn btn-secondary btn-lg btn-druk">ТЕЛЕГРАМ-КАНАЛ (5.4K)</a>
+      <button class="btn btn-primary btn-lg btn-druk" data-open-modal="modal-apply" data-i18n="mobile.apply">ПОДАТИ ЗАЯВУ ОНЛАЙН</button>
+      <a href="https://t.me/Profkom_NMU" target="_blank" class="btn btn-secondary btn-lg btn-druk" data-i18n="mobile.telegram">ТЕЛЕГРАМ-КАНАЛ (5.4K)</a>
     </div>
   </div>
 
   <main>
     <!-- ==========================================================================
-         HERO SECTION (High-Energy Layered Branding)
+         HERO SECTION (Layered Branding)
          ========================================================================== -->
     <section class="hero-section" id="hero">
       <div class="bg-watermark" style="top: 10%; right: -5%;">NMU UNION</div>
@@ -103,22 +164,22 @@
         <div class="hero-text-col reveal-item">
           <div class="hero-badge-pill">
             <span class="status-indicator"></span>
-            <span>ППО студентів НМУ імені О.О. Богомольця</span>
+            <span data-i18n="hero.badge">ППО студентів НМУ імені О.О. Богомольця</span>
           </div>
 
           <h1 class="hero-title">
-            <span class="text-gradient-white">ПРОФКОМ —</span>
-            <span class="text-gradient-emerald">СИЛА ТА ОПОРА</span>
-            <span>СТУДЕНТІВ</span>
+            <span class="text-gradient-white" data-i18n="hero.title.p1">ПРОФКОМ —</span>
+            <span class="text-gradient-emerald" data-i18n="hero.title.p2">СИЛА ТА ОПОРА</span>
+            <span data-i18n="hero.title.p3">СТУДЕНТІВ</span>
           </h1>
 
-          <p class="hero-subtitle">
+          <p class="hero-subtitle" data-i18n="hero.subtitle">
             Самоврядна організація, яка стоїть на захисті твоїх прав, забезпечує соціальні стипендії, знижки на проживання у гуртожитках, квитки на події культури та гуртує прогресивну медичну спільноту.
           </p>
 
           <div class="hero-actions">
             <button class="btn btn-primary btn-lg btn-druk" data-open-modal="modal-apply">
-              <span>ПОДАТИ ЗАЯВУ</span>
+              <span data-i18n="hero.cta.apply">ПОДАТИ ЗАЯВУ</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -128,13 +189,13 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
               </svg>
-              <span>TELEGRAM (5.4K)</span>
+              <span data-i18n="hero.cta.telegram">TELEGRAM (5.4K)</span>
             </a>
             <button class="btn btn-secondary btn-lg" data-open-modal="modal-feedback" title="Анонімна скринька довіри">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
               </svg>
-              <span>Скринька скарг</span>
+              <span data-i18n="hero.cta.feedback">Скринька скарг</span>
             </button>
           </div>
 
@@ -142,68 +203,57 @@
           <div class="hero-stats-strip">
             <div class="stat-item">
               <span class="stat-num emerald" data-target="5.4" data-is-k="true">5.4K+</span>
-              <span class="stat-label">Студентів у мережі</span>
+              <span class="stat-label" data-i18n="hero.stats.students">Студентів у мережі</span>
             </div>
             <div class="stat-item">
               <span class="stat-num" data-target="100">100%</span>
-              <span class="stat-label">Захист прав</span>
+              <span class="stat-label" data-i18n="hero.stats.protection">Захист прав</span>
             </div>
             <div class="stat-item">
-              <span class="stat-num emerald" data-target="49">49%–100%</span>
-              <span class="stat-label">Пільги на гуртожиток</span>
+              <span class="stat-num emerald">49%–100%</span>
+              <span class="stat-label" data-i18n="hero.stats.dorms">Пільги на гуртожиток</span>
             </div>
             <div class="stat-item">
               <span class="stat-num" data-target="7">7</span>
-              <span class="stat-label">Клубів за інтересами</span>
+              <span class="stat-label" data-i18n="hero.stats.clubs">Клубів за інтересами</span>
             </div>
           </div>
         </div>
 
-        <!-- Hero 3D Card Stack Visual -->
-        <div class="hero-visual reveal-item delay-2">
+        <!-- 3D Perspective Glass Card Stack -->
+        <div class="hero-visual-col reveal-item delay-2">
           <div class="hero-card-stack">
-            <div class="stack-layer stack-layer-1"></div>
-            <div class="stack-layer stack-layer-2"></div>
-            
-            <div class="stack-layer stack-layer-main">
-              <div>
-                <div class="card-emblem-badge">
-                  <img src="./assets/images/profkom_logo_transparent.png" alt="Профком НМУ" class="main-emblem-img">
-                  <img src="./assets/images/nmu_logo_white.svg" alt="НМУ Богомольця" class="university-crest-mini">
-                </div>
-
-                <div class="stack-card-content">
-                  <span class="section-tag">Офіційний статус</span>
-                  <h3>ППО СТУДЕНТІВ УНІВЕРСИТЕТУ</h3>
-                  <p>
-                    Діє на основі Закону України «Про професійні спілки, їх права та гарантії діяльності» та Статуту Київської міської профспілки працівників охорони здоров'я.
-                  </p>
-                </div>
+            <div class="glass-card stack-layer-main">
+              <img src="./assets/images/nmu_logo_white.svg" alt="NMU Seal" class="seal-watermark">
+              
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                <img src="./assets/images/profkom_logo_transparent.png" alt="Профком" style="width: 58px; height: 58px;">
+                <span class="status-badge" style="background: rgba(0,0,0,0.4); border-color: var(--border-subtle);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  <span data-i18n="hero.card.legal">Повний правовий захист</span>
+                </span>
               </div>
 
-              <!-- Card Bottom Details -->
-              <div style="border-top: 1px solid var(--border-subtle); padding-top: 20px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem;">
-                  <span style="color: var(--text-muted);">Локація штабу:</span>
-                  <span style="font-weight: 700; color: var(--emerald-bright);">Морф. корпус, каб. 438</span>
+              <div class="section-tag" style="margin-bottom: 12px;" data-i18n="hero.card.status">ОФІЦІЙНИЙ СТАТУС</div>
+              <h2 class="font-druk" style="font-size: 1.35rem; color: var(--heading-color); margin-bottom: 14px;" data-i18n="hero.card.title">
+                ППО СТУДЕНТІВ УНІВЕРСИТЕТУ
+              </h2>
+              <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 24px;" data-i18n="hero.card.desc">
+                Діє на основі Закону України «Про професійні спілки, їх права та гарантії діяльності» та Статуту Київської міської профспілки працівників охорони здоров'я.
+              </p>
+
+              <div style="padding-top: 20px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+                <div class="status-badge" style="background: rgba(16, 185, 129, 0.08);">
+                  <span class="status-indicator"></span>
+                  <span data-i18n="hero.card.addr">Берестейський проспект, 34</span>
                 </div>
-                <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; margin-top: 8px;">
-                  <span style="color: var(--text-muted);">Голова організації:</span>
-                  <span style="font-weight: 700; color: #fff;">Ґвазкова Ярослава</span>
+                <div style="text-align: right;">
+                  <div style="font-weight: 700; color: var(--emerald-bright);" data-i18n="hero.card.room">Морф. корпус, каб. 438</div>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;" data-i18n="hero.card.head">Ґвазкова Ярослава</div>
                 </div>
               </div>
-            </div>
-
-            <!-- Floating Chips -->
-            <div class="floating-chip chip-left">
-              <span class="status-indicator"></span>
-              <span>Берестейський проспект, 34</span>
-            </div>
-            <div class="floating-chip chip-right">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-              <span>Повний правовий захист</span>
             </div>
           </div>
         </div>
@@ -211,129 +261,25 @@
     </section>
 
     <!-- ==========================================================================
-         KINETIC TYPOGRAPHY MARQUEE (Druk Wide Cyr)
+         KINETIC MARQUEE TICKER
          ========================================================================== -->
-    <div class="marquee-strip" aria-hidden="true">
-      <div class="marquee-content">
-        <div class="marquee-item"><span>ПРОФКОМ НМУ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>СИЛА ТА ОПОРА</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>СОЦІАЛЬНІ СТИПЕНДІЇ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ЗНИЖКИ НА ГУРТОЖИТОК</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ЗАХИСТ ПРАВ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>МІЖНАРОДНИЙ КВИТОК ISIC</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ТЕАТРАЛЬНІ КВИТКИ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ДЕБАТНИЙ КЛУБ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>SPARTAN TRIFECTA</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>AYMSCONF</span><span class="dot"></span></div>
-
-        <!-- Duplicate for Infinite Loop -->
-        <div class="marquee-item"><span>ПРОФКОМ НМУ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>СИЛА ТА ОПОРА</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>СОЦІАЛЬНІ СТИПЕНДІЇ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ЗНИЖКИ НА ГУРТОЖИТОК</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ЗАХИСТ ПРАВ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>МІЖНАРОДНИЙ КВИТОК ISIC</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ТЕАТРАЛЬНІ КВИТКИ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>ДЕБАТНИЙ КЛУБ</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>SPARTAN TRIFECTA</span><span class="dot"></span></div>
-        <div class="marquee-item"><span>AYMSCONF</span><span class="dot"></span></div>
+    <div class="marquee-container" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item" data-i18n="marquee.text">СОЦІАЛЬНИЙ ЗАХИСТ • СТИПЕНДІЇ • ГУРТОЖИТКИ • ЮРИДИЧНА ДОПОМОГА • СПОРТ • ЗНИЖКИ • ВОЛОНТЕРСТВО • КУЛЬТУРА • СТУДЕНТСЬКА РОДИНА</span>
+        <span class="marquee-item" data-i18n="marquee.text">СОЦІАЛЬНИЙ ЗАХИСТ • СТИПЕНДІЇ • ГУРТОЖИТКИ • ЮРИДИЧНА ДОПОМОГА • СПОРТ • ЗНИЖКИ • ВОЛОНТЕРСТВО • КУЛЬТУРА • СТУДЕНТСЬКА РОДИНА</span>
       </div>
     </div>
 
     <!-- ==========================================================================
-         LIVE DISPATCH NOTICE (Telegram Feed Integration)
-         ========================================================================== -->
-    <section class="section-padding" style="padding-top: 50px; padding-bottom: 50px;">
-      <div class="container">
-        <div class="dispatch-bar reveal-item">
-          <div class="dispatch-info">
-            <div class="dispatch-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-              </svg>
-            </div>
-            <div class="dispatch-text">
-              <strong>Офіційне повідомлення Профкому:</strong> Прийомні години на поточному тижні: <em>Понеділок з 15:00 до 17:00</em>, <em>Четвер з 15:00 до 18:00</em> (Морфологічний корпус, 4 поверх, каб. №438). Під час сигналу повітряної тривоги прийом переміщується в укриття!
-            </div>
-          </div>
-          <a href="https://t.me/Profkom_NMU" target="_blank" class="btn btn-primary btn-sm btn-druk">
-            ОПЕРАТИВНИЙ КАНАЛ
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         ABOUT & MISSION
-         ========================================================================== -->
-    <section class="section-padding" id="about">
-      <div class="bg-watermark" style="bottom: 10%; left: -5%;">COMMUNITY</div>
-
-      <div class="container">
-        <div class="section-header reveal-item">
-          <span class="section-tag">Про організацію</span>
-          <h2 class="section-title">ХТО МИ ТА ЗАРАДИ ЧОГО ДІЄМО</h2>
-          <p class="section-desc">
-            Первинна профспілкова організація студентів (Профком студентів) — це добровільне самоврядне об’єднання молоді Національного медичного університету імені О.О. Богомольця з потужною законодавчою базою.
-          </p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-          <div class="glass-card reveal-item delay-1">
-            <div class="card-glow-edge"></div>
-            <div class="benefit-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-            </div>
-            <h3 class="font-druk" style="font-size: 1.25rem; color: #fff; margin-bottom: 12px;">ПРАВОВИЙ ЩИТ</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Представництво перед адміністрацією, ректоратом та деканатами. Контроль дотримання прав студентів при екзаменаційних сесіях, виселенні, апеляціях та розподілі.
-            </p>
-          </div>
-
-          <div class="glass-card reveal-item delay-2">
-            <div class="card-glow-edge"></div>
-            <div class="benefit-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-              </svg>
-            </div>
-            <h3 class="font-druk" style="font-size: 1.25rem; color: #fff; margin-bottom: 12px;">СОЦІАЛЬНА ОПОРА</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Супровід призначення соціальних стипендій, 49% знижок та безоплатного проживання в гуртожитках для ВПО, дітей УБД, сиріт та пільгових категорій.
-            </p>
-          </div>
-
-          <div class="glass-card reveal-item delay-3">
-            <div class="card-glow-edge"></div>
-            <div class="benefit-icon-box">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-              </svg>
-            </div>
-            <h3 class="font-druk" style="font-size: 1.25rem; color: #fff; margin-bottom: 12px;">КУЛЬТУРА ТА ДРАЙВ</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">
-              Благодійні медичні бали, турніри Spartan Trifecta, конференція AYMSConf, безкоштовні квитки до театрів та 7 студентських клубів за інтересами.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         PRIVILEGES & BENEFITS GRID ("Що дає Профком")
+         PRIVILEGES SECTION (8 CARDS)
          ========================================================================== -->
     <section class="section-padding" id="benefits">
       <div class="container">
         <div class="section-header reveal-item">
-          <span class="section-tag">Можливості та гарантії</span>
-          <h2 class="section-title">ПЕРЕВАГИ ЧЛЕНСТВА У ПРОФКОМІ</h2>
-          <p class="section-desc">
-            Профспілка об'єднує понад 5 400 небайдужих студентів НМУ. Дізнайся, які привілеї та підтримку отримує кожен член нашої організації.
+          <span class="section-tag" data-i18n="benefits.tag">Чому варто бути в Профкомі</span>
+          <h2 class="section-title" data-i18n="benefits.title">8 КЛЮЧОВИХ ПЕРЕВАГ ДЛЯ МЕДИКІВ</h2>
+          <p class="section-desc" data-i18n="benefits.desc">
+            Членство у Профкомі — це реальний щоденний захист та фінансові привілеї під час навчання в НМУ.
           </p>
         </div>
 
@@ -343,15 +289,15 @@
             <div class="benefit-top">
               <div class="benefit-icon-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title">Соціальні стипендії</h3>
-              <p class="benefit-desc">
-                Повний супровід подання документів для студентів ННІ медицини, Факультету педіатрії та ФПЛЗСУ. Контроль нарахування виплат щомісяця.
+              <h3 class="benefit-title" data-i18n="benefits.c1.title">Юридичний захист</h3>
+              <p class="benefit-desc" data-i18n="benefits.c1.desc">
+                Захист прав студентів у разі неправомірних дій, конфліктів на іспитах, заліках чи загрози відрахування. Представництво на засіданнях ректорату та деканатів.
               </p>
             </div>
-            <span class="benefit-tag">Фінансова безпека</span>
+            <span class="benefit-tag" data-i18n="benefits.c1.tag">Захист прав</span>
           </div>
 
           <!-- Card 2 -->
@@ -359,16 +305,16 @@
             <div class="benefit-top">
               <div class="benefit-icon-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title">Знижки на гуртожиток</h3>
-              <p class="benefit-desc">
-                Оформлення 49% знижки для внутрішньо переміщених осіб (ВПО) та 100% безоплатного проживання для сиріт та дітей учасників бойових дій.
+              <h3 class="benefit-title" data-i18n="benefits.c2.title">Соціальні стипендії</h3>
+              <p class="benefit-desc" data-i18n="benefits.c2.desc">
+                Повний документальний супровід та консультації щодо нарахування державних соціальних стипендій для ВПО, дітей УБД, сиріт та осіб з інвалідністю.
               </p>
             </div>
-            <span class="benefit-tag">Житлова комісія</span>
+            <span class="benefit-tag" data-i18n="benefits.c2.tag">Фінансова опора</span>
           </div>
 
           <!-- Card 3 -->
@@ -376,17 +322,16 @@
             <div class="benefit-top">
               <div class="benefit-icon-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
               </div>
-              <h3 class="benefit-title">Безкоштовне дозвілля</h3>
-              <p class="benefit-desc">
-                Регулярний розподіл безкоштовних квитків до провідних київських театрів, концертів, кінозалів, музеїв та художніх виставок.
+              <h3 class="benefit-title" data-i18n="benefits.c3.title">Пільги на гуртожитки</h3>
+              <p class="benefit-desc" data-i18n="benefits.c3.desc">
+                Оформлення 49% знижки на оплату проживання у гуртожитках для ВПО та 100% звільнення від оплати для пільгових категорій. Контроль побуту.
               </p>
             </div>
-            <span class="benefit-tag">Культурна комісія</span>
+            <span class="benefit-tag" data-i18n="benefits.c3.tag">Побут та житло</span>
           </div>
 
           <!-- Card 4 -->
@@ -394,17 +339,15 @@
             <div class="benefit-top">
               <div class="benefit-icon-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title">Міжнародна картка ISIC</h3>
-              <p class="benefit-desc">
-                Оформлення міжнародного студентського посвідчення International Student Identity Card зі знижками на транспорт, авіаквитки та хостели у 130+ країнах.
+              <h3 class="benefit-title" data-i18n="benefits.c4.title">Квитки та культура</h3>
+              <p class="benefit-desc" data-i18n="benefits.c4.desc">
+                Безкоштовні та пільгові квитки у провідні театри Києва, кіно, на концерти, організація легендарних благодійних балів НМУ та творчих вечорів.
               </p>
             </div>
-            <span class="benefit-tag">Міжнародний статус</span>
+            <span class="benefit-tag" data-i18n="benefits.c4.tag">Дозвілля</span>
           </div>
 
           <!-- Card 5 -->
@@ -412,16 +355,16 @@
             <div class="benefit-top">
               <div class="benefit-icon-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                  <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 6v12M8 10h8"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title">Юридичний супровід</h3>
-              <p class="benefit-desc">
-                Особисті консультації з навчальних положень університету, вирішення спірних питань з кафедрами, захист під час переведення або відрахування.
+              <h3 class="benefit-title" data-i18n="benefits.c5.title">Матеріальна допомога</h3>
+              <p class="benefit-desc" data-i18n="benefits.c5.desc">
+                Одноразові грошові виплати членам профспілки у зв'язку зі скрутним матеріальним становищем, хворобою, лікуванням або особливими життєвими подіями.
               </p>
             </div>
-            <span class="benefit-tag">Правовий комітет</span>
+            <span class="benefit-tag" data-i18n="benefits.c5.tag">Грошова підтримка</span>
           </div>
 
           <!-- Card 6 -->
@@ -429,15 +372,19 @@
             <div class="benefit-top">
               <div class="benefit-icon-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                  <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                  <path d="M4 22h16"></path>
+                  <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34"></path>
+                  <path d="M6 4h12a2 2 0 0 1 2 2v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6V6a2 2 0 0 1 2-2z"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title">Матеріальна допомога</h3>
-              <p class="benefit-desc">
-                Одноразова або регулярна грошова допомога студентам Профкому, які опинилися у скрутних життєвих обставинах або потребують коштів на лікування.
+              <h3 class="benefit-title" data-i18n="benefits.c6.title">Спорт та здоров'я</h3>
+              <p class="benefit-desc" data-i18n="benefits.c6.desc">
+                Організація турнірів з міні-футболу, волейболу, настільного тенісу, підтримка університетських збірних, участь у Spartan Race та благодійних забігах.
               </p>
             </div>
-            <span class="benefit-tag">Соціальна підтримка</span>
+            <span class="benefit-tag" data-i18n="benefits.c6.tag">Активне життя</span>
           </div>
 
           <!-- Card 7 -->
@@ -451,12 +398,12 @@
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title">7 Клубів за інтересами</h3>
-              <p class="benefit-desc">
+              <h3 class="benefit-title" data-i18n="benefits.c7.title">7 Клубів за інтересами</h3>
+              <p class="benefit-desc" data-i18n="benefits.c7.desc">
                 Мафія, дебати в укритті морфологічного корпусу, книжковий та кіноклуб, True Crime спільнота, театральна студія та волонтерські ініціативи.
               </p>
             </div>
-            <span class="benefit-tag">Студентська родина</span>
+            <span class="benefit-tag" data-i18n="benefits.c7.tag">Студентська родина</span>
           </div>
 
           <!-- Card 8 -->
@@ -467,12 +414,12 @@
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
               </div>
-              <h3 class="benefit-title">Лідерство та ініціативи</h3>
-              <p class="benefit-desc">
+              <h3 class="benefit-title" data-i18n="benefits.c8.title">Лідерство та ініціативи</h3>
+              <p class="benefit-desc" data-i18n="benefits.c8.desc">
                 Прямий вплив на процеси в університеті. Можливість реалізувати власний культурний чи соціальний проєкт із повною підтримкою команди Профкому.
               </p>
             </div>
-            <span class="benefit-tag">Розвиток кар'єри</span>
+            <span class="benefit-tag" data-i18n="benefits.c8.tag">Розвиток кар'єри</span>
           </div>
         </div>
       </div>
@@ -484,22 +431,22 @@
     <section class="section-padding" id="services">
       <div class="container">
         <div class="section-header reveal-item">
-          <span class="section-tag">Інтерактивний гід</span>
-          <h2 class="section-title">ПІЛЬГИ, СТИПЕНДІЇ ТА ГУРТОЖИТКИ</h2>
-          <p class="section-desc">
+          <span class="section-tag" data-i18n="calc.tag">Інтерактивний гід</span>
+          <h2 class="section-title" data-i18n="calc.title">ПІЛЬГИ, СТИПЕНДІЇ ТА ГУРТОЖИТКИ</h2>
+          <p class="section-desc" data-i18n="calc.desc">
             Оберіть вашу категорію, щоб миттєво отримати актуальний чекліст документів відповідно до Постанови КМУ №1045 та внутрішніх розпоряджень НМУ.
           </p>
         </div>
 
         <div class="calc-wrapper reveal-item delay-1">
           <div class="calc-tabs">
-            <button class="calc-tab active" data-tab="tab-scholarships">
+            <button class="calc-tab active" data-tab="tab-scholarships" data-i18n="calc.tab1">
               1. Соціальні стипендії
             </button>
-            <button class="calc-tab" data-tab="tab-housing">
+            <button class="calc-tab" data-tab="tab-housing" data-i18n="calc.tab2">
               2. Пільги на гуртожиток
             </button>
-            <button class="calc-tab" data-tab="tab-join">
+            <button class="calc-tab" data-tab="tab-join" data-i18n="calc.tab3">
               3. Як вступити в Профком
             </button>
           </div>
@@ -507,36 +454,36 @@
           <!-- Panel 1: Scholarships -->
           <div class="calc-panel active" id="tab-scholarships">
             <div style="margin-bottom: 24px;">
-              <h3 class="font-druk" style="font-size: 1.2rem; color: #fff; margin-bottom: 8px;">ОБЕРІТЬ ВАШУ ПІЛЬГОВУ КАТЕГОРІЮ:</h3>
-              <p style="color: var(--text-muted); font-size: 0.9rem;">
+              <h3 class="font-druk" style="font-size: 1.15rem; color: var(--heading-color); margin-bottom: 8px;" data-i18n="calc.selectHeading">ОБЕРІТЬ ВАШУ ПІЛЬГОВУ КАТЕГОРІЮ:</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="calc.selectSub">
                 Зверніть увагу: Профком студентів веде прямий прийом документів для ННІ медицини, ФПЛЗСУ та Факультету педіатрії.
               </p>
             </div>
 
             <div class="category-selector">
               <button class="cat-btn selected" data-category="vpo">
-                <div class="cat-btn-title">ВПО</div>
-                <div class="cat-btn-desc">Внутрішньо переміщена особа</div>
+                <div class="cat-btn-title" data-i18n="calc.cat.vpo.title">ВПО</div>
+                <div class="cat-btn-desc" data-i18n="calc.cat.vpo.desc">Внутрішньо переміщена особа</div>
               </button>
               <button class="cat-btn" data-category="ubd">
-                <div class="cat-btn-title">Діти УБД / АТО</div>
-                <div class="cat-btn-desc">Учасники бойових дій</div>
+                <div class="cat-btn-title" data-i18n="calc.cat.ubd.title">Діти УБД / АТО</div>
+                <div class="cat-btn-desc" data-i18n="calc.cat.ubd.desc">Учасники бойових дій</div>
               </button>
               <button class="cat-btn" data-category="orphan">
-                <div class="cat-btn-title">Сироти</div>
-                <div class="cat-btn-desc">Позбавлені піклування</div>
+                <div class="cat-btn-title" data-i18n="calc.cat.orphan.title">Сироти</div>
+                <div class="cat-btn-desc" data-i18n="calc.cat.orphan.desc">Позбавлені піклування</div>
               </button>
               <button class="cat-btn" data-category="chaes">
-                <div class="cat-btn-title">ЧАЕС</div>
-                <div class="cat-btn-desc">Постраждалі 1-3 категорії</div>
+                <div class="cat-btn-title" data-i18n="calc.cat.chaes.title">ЧАЕС</div>
+                <div class="cat-btn-desc" data-i18n="calc.cat.chaes.desc">Постраждалі 1-3 категорії</div>
               </button>
               <button class="cat-btn" data-category="miners">
-                <div class="cat-btn-title">Шахтарі</div>
-                <div class="cat-btn-desc">Стаж батьків 15+ років</div>
+                <div class="cat-btn-title" data-i18n="calc.cat.miners.title">Шахтарі</div>
+                <div class="cat-btn-desc" data-i18n="calc.cat.miners.desc">Стаж батьків 15+ років</div>
               </button>
               <button class="cat-btn" data-category="disability">
-                <div class="cat-btn-title">Інвалідність</div>
-                <div class="cat-btn-desc">Особи I-III групи</div>
+                <div class="cat-btn-title" data-i18n="calc.cat.disability.title">Інвалідність</div>
+                <div class="cat-btn-desc" data-i18n="calc.cat.disability.desc">Особи I-III групи</div>
               </button>
             </div>
 
@@ -548,16 +495,16 @@
                     Супровід через Профком (Морфологічний корпус, каб. 438)
                   </div>
                 </div>
-                <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">
+                <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply" data-i18n="calc.applyBtn">
                   ПОДАТИ ЗАЯВУ
                 </button>
               </div>
 
               <div style="margin-bottom: 16px; font-size: 0.88rem; color: var(--text-muted);">
-                <strong>Вимоги:</strong> <span id="scholarship-terms">Денна бюджетна форма навчання, відсутність заборгованостей.</span>
+                <strong data-i18n="calc.termsLabel">Вимоги:</strong> <span id="scholarship-terms">Денна форма навчання за державним замовленням, відсутність академічної заборгованості.</span>
               </div>
 
-              <h5 style="font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 12px; text-transform: uppercase;">
+              <h5 style="font-size: 0.9rem; font-weight: 700; color: var(--heading-color); margin-bottom: 12px; text-transform: uppercase;" data-i18n="calc.reqHeading">
                 Необхідний пакет документів:
               </h5>
               <ul class="checklist-items" id="scholarship-checklist-items">
@@ -569,19 +516,19 @@
           <!-- Panel 2: Housing Discounts -->
           <div class="calc-panel" id="tab-housing">
             <div style="margin-bottom: 28px;">
-              <h3 class="font-druk" style="font-size: 1.3rem; color: #fff; margin-bottom: 8px;">ПРОЖИВАННЯ У ГУРТОЖИТКАХ УНІВЕРСИТЕТУ</h3>
-              <p style="color: var(--text-muted); font-size: 0.95rem;">
+              <h3 class="font-druk" style="font-size: 1.25rem; color: var(--heading-color); margin-bottom: 8px;" data-i18n="calc.housing.title">ПРОЖИВАННЯ У ГУРТОЖИТКАХ УНІВЕРСИТЕТУ</h3>
+              <p style="color: var(--text-muted); font-size: 0.92rem;" data-i18n="calc.housing.desc">
                 Питаннями надання знижок на проживання та захистом житлово-побутових умов опікується Житлово-побутова комісія Профкому студентів.
               </p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 30px;">
-              <div class="glass-card" style="border-color: var(--border-emerald);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 28px;">
+              <div class="glass-card" style="padding: 24px; border-color: var(--border-emerald);">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                  <span style="padding: 4px 10px; background: rgba(16, 185, 129, 0.2); color: var(--emerald-bright); border-radius: 4px; font-weight: 800; font-size: 0.8rem;">100% БЕЗОПЛАТНО</span>
-                  <h4 class="font-druk" style="font-size: 1.05rem; color: #fff;">ПОВНЕ ЗВІЛЬНЕННЯ ВІД ОПЛАТИ</h4>
+                  <span style="padding: 4px 10px; background: rgba(16, 185, 129, 0.2); color: var(--emerald-bright); border-radius: 4px; font-weight: 800; font-size: 0.8rem;" data-i18n="calc.housing.freeBadge">100% БЕЗОПЛАТНО</span>
+                  <h4 class="font-druk" style="font-size: 1.05rem; color: var(--heading-color);" data-i18n="calc.housing.freeTitle">ПОВНЕ ЗВІЛЬНЕННЯ ВІД ОПЛАТИ</h4>
                 </div>
-                <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: var(--text-light);">
+                <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: var(--text-light);" data-i18n-html="calc.housing.freeList">
                   <li>• Учасники бойових дій (УБД)</li>
                   <li>• Діти учасників бойових дій</li>
                   <li>• Діти загиблих захисників України</li>
@@ -589,53 +536,16 @@
                 </ul>
               </div>
 
-              <div class="glass-card" style="border-color: rgba(59, 130, 246, 0.4);">
+              <div class="glass-card" style="padding: 24px; border-color: rgba(59, 130, 246, 0.4);">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                  <span style="padding: 4px 10px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border-radius: 4px; font-weight: 800; font-size: 0.8rem;">49% ЗНИЖКА</span>
-                  <h4 class="font-druk" style="font-size: 1.05rem; color: #fff;">ПІЛЬГОВА ВАРТІСТЬ</h4>
+                  <span style="padding: 4px 10px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border-radius: 4px; font-weight: 800; font-size: 0.8rem;" data-i18n="calc.housing.discBadge">49% ЗНИЖКА</span>
+                  <h4 class="font-druk" style="font-size: 1.05rem; color: var(--heading-color);" data-i18n="calc.housing.discTitle">ПІЛЬГОВА ВАРТІСТЬ</h4>
                 </div>
-                <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: var(--text-light);">
+                <ul style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem; color: var(--text-light);" data-i18n-html="calc.housing.discList">
                   <li>• Студенти, які мають статус ВПО (внутрішньо переміщені особи)</li>
                   <li>• Першочергове поселення для осіб з інвалідністю</li>
                   <li>• Постраждалі від ЧАЕС (I, II категорії)</li>
-                  <li>• Студенти з багатодітних та малозабезпечених родин</li>
                 </ul>
-              </div>
-            </div>
-
-            <div class="calc-result-box">
-              <h4 class="checklist-title">Як оформити знижку на гуртожиток:</h4>
-              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 16px;">
-                Прийти в робочі години Профкому (щотижня публікуються в Telegram-каналі) в каб. 438 та принести копії:
-              </p>
-              <ul class="checklist-items">
-                <li class="checklist-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Паспорт громадянина України + витяг з місця реєстрації</span>
-                </li>
-                <li class="checklist-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Реєстраційний номер платника податків (ІПН)</span>
-                </li>
-                <li class="checklist-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Студентський квиток</span>
-                </li>
-                <li class="checklist-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Свідоцтво про народження</span>
-                </li>
-                <li class="checklist-item">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  <span>Документ, що підтверджує пільгу (посвідчення УБД, довідка ВПО тощо)</span>
-                </li>
-              </ul>
-
-              <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="font-size: 0.88rem; color: var(--text-light);">
-                  <strong>Голова житлово-побутової комісії:</strong> Мороз Віталій Сергійович (+38 063 822 8655)
-                </div>
-                <a href="https://t.me/Jdigd" target="_blank" class="btn btn-primary btn-sm btn-druk">НАПИСАТИ В ТЕЛЕГРАМ (@JDIGD)</a>
               </div>
             </div>
           </div>
@@ -643,29 +553,29 @@
           <!-- Panel 3: How to Join -->
           <div class="calc-panel" id="tab-join">
             <div style="max-width: 680px; margin: 0 auto; text-align: center;">
-              <h3 class="font-druk" style="font-size: 1.5rem; color: #fff; margin-bottom: 16px;">ВСЕ ДУЖЕ ПРОСТО</h3>
-              <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 30px;">
+              <h3 class="font-druk" style="font-size: 1.4rem; color: var(--heading-color); margin-bottom: 14px;" data-i18n="calc.join.title">ВСЕ ДУЖЕ ПРОСТО</h3>
+              <p style="color: var(--text-muted); font-size: 0.98rem; line-height: 1.6; margin-bottom: 28px;" data-i18n="calc.join.desc">
                 Щоб долучитися до лав Профспілки студентів НМУ імені О.О. Богомольця, необхідно завітати до нашого кабінету у Морфологічному корпусі або заповнити швидку електронну форму!
               </p>
 
-              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; text-align: left; margin-bottom: 36px;">
-                <div class="glass-card" style="padding: 24px;">
-                  <span style="font-family: var(--font-display); font-size: 1.4rem; color: var(--emerald-bright);">01</span>
-                  <h4 style="font-weight: 700; color: #fff; margin: 8px 0;">Офлайн візит</h4>
-                  <p style="font-size: 0.88rem; color: var(--text-muted);">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; text-align: left; margin-bottom: 32px;">
+                <div class="glass-card" style="padding: 22px;">
+                  <span style="font-family: var(--font-display); font-size: 1.3rem; color: var(--emerald-bright);">01</span>
+                  <h4 style="font-weight: 700; color: var(--heading-color); margin: 6px 0;" data-i18n="calc.join.s1.title">Офлайн візит</h4>
+                  <p style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="calc.join.s1.desc">
                     Морфологічний корпус, 4 поверх, кабінет №438. Заповніть паперову заяву за 2 хвилини.
                   </p>
                 </div>
-                <div class="glass-card" style="padding: 24px;">
-                  <span style="font-family: var(--font-display); font-size: 1.4rem; color: var(--cyan-accent);">02</span>
-                  <h4 style="font-weight: 700; color: #fff; margin: 8px 0;">Онлайн форма</h4>
-                  <p style="font-size: 0.88rem; color: var(--text-muted);">
+                <div class="glass-card" style="padding: 22px;">
+                  <span style="font-family: var(--font-display); font-size: 1.3rem; color: var(--cyan-accent);">02</span>
+                  <h4 style="font-weight: 700; color: var(--heading-color); margin: 6px 0;" data-i18n="calc.join.s2.title">Онлайн форма</h4>
+                  <p style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="calc.join.s2.desc">
                     Надішліть заявку через наш сайт, і секретар профкому зв'яжеться з Вами в Telegram.
                   </p>
                 </div>
               </div>
 
-              <button class="btn btn-primary btn-lg btn-druk" data-open-modal="modal-apply">
+              <button class="btn btn-primary btn-lg btn-druk" data-open-modal="modal-apply" data-i18n="calc.join.btn">
                 ЗАПОВНИТИ ОНЛАЙН-ЗАЯВУ
               </button>
             </div>
@@ -675,14 +585,14 @@
     </section>
 
     <!-- ==========================================================================
-         LEADERSHIP SECTION ("Керівництво Профкому")
+         LEADERSHIP SECTION (COMPACT MINIATURES)
          ========================================================================== -->
     <section class="section-padding" id="leadership">
       <div class="container">
         <div class="section-header reveal-item">
-          <span class="section-tag">Команда захисту</span>
-          <h2 class="section-title">КЕРІВНИЦТВО ПРОФКОМУ</h2>
-          <p class="section-desc">
+          <span class="section-tag" data-i18n="lead.tag">Команда захисту</span>
+          <h2 class="section-title" data-i18n="lead.title">КЕРІВНИЦТВО ПРОФКОМУ</h2>
+          <p class="section-desc" data-i18n="lead.desc">
             Студенти, які щодня представляють інтереси університетської спільноти, вирішують конфлікти та організовують масштабні ініціативи.
           </p>
         </div>
@@ -690,65 +600,81 @@
         <div class="leadership-grid">
           <!-- Leader 1 -->
           <div class="leader-card reveal-item delay-1">
-            <div class="leader-photo-wrapper">
-              <img src="./assets/images/leader_yaroslava_gwazkova.jpg" alt="Ґвазкова Ярослава Олегівна" class="leader-photo">
-              <span class="leader-role-badge">ГОЛОВА ПРОФКОМУ</span>
-            </div>
-            <div class="leader-details">
-              <h3 class="leader-name">Ґвазкова Ярослава</h3>
-              <p class="leader-faculty">Студентка ННІ медицини</p>
-              <div class="leader-contact-strip">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (066) 225-01-89</span>
-                <a href="https://t.me/gwazkova" target="_blank" class="contact-telegram">@gwazkova</a>
+            <div>
+              <div class="leader-header-compact">
+                <div class="leader-miniature" title="Ґвазкова Ярослава">
+                  <span class="leader-miniature-text">ЯҐ</span>
+                </div>
+                <span class="leader-role-badge" data-i18n="lead.role.head">ГОЛОВА ПРОФКОМУ</span>
               </div>
+              <div class="leader-details">
+                <h3 class="leader-name" data-i18n="lead.name.gwazkova">Ґвазкова Ярослава</h3>
+                <p class="leader-faculty" data-i18n="lead.fac.gwazkova">Студентка ННІ медицини</p>
+              </div>
+            </div>
+            <div class="leader-contact-strip">
+              <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (066) 225-01-89</span>
+              <a href="https://t.me/gwazkova" target="_blank" class="contact-telegram">@gwazkova</a>
             </div>
           </div>
 
           <!-- Leader 2 -->
           <div class="leader-card reveal-item delay-2">
-            <div class="leader-photo-wrapper">
-              <img src="./assets/images/deputy_elizaveta_kharyshuk.jpg" alt="Харишук Єлизавета Вікторівна" class="leader-photo">
-              <span class="leader-role-badge">ЗАСТУПНИК ГОЛОВИ</span>
-            </div>
-            <div class="leader-details">
-              <h3 class="leader-name">Харишук Єлизавета</h3>
-              <p class="leader-faculty">Студентка Факультету Педіатрії</p>
-              <div class="leader-contact-strip">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (093) 319-56-39</span>
-                <a href="https://t.me/Lizo4ka_kh" target="_blank" class="contact-telegram">@Lizo4ka_kh</a>
+            <div>
+              <div class="leader-header-compact">
+                <div class="leader-miniature" title="Харишук Єлизавета">
+                  <span class="leader-miniature-text">ЄХ</span>
+                </div>
+                <span class="leader-role-badge" data-i18n="lead.role.deputy">ЗАСТУПНИК ГОЛОВИ</span>
               </div>
+              <div class="leader-details">
+                <h3 class="leader-name" data-i18n="lead.name.kharyshuk">Харишук Єлизавета</h3>
+                <p class="leader-faculty" data-i18n="lead.fac.kharyshuk">Студентка Факультету Педіатрії</p>
+              </div>
+            </div>
+            <div class="leader-contact-strip">
+              <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (093) 319-56-39</span>
+              <a href="https://t.me/Lizo4ka_kh" target="_blank" class="contact-telegram">@Lizo4ka_kh</a>
             </div>
           </div>
 
           <!-- Leader 3 -->
           <div class="leader-card reveal-item delay-3">
-            <div class="leader-photo-wrapper">
-              <img src="./assets/images/deputy_ilya_kutsenko.jpg" alt="Куценко Ілля Ігорович" class="leader-photo">
-              <span class="leader-role-badge">ЗАСТУПНИК ГОЛОВИ</span>
-            </div>
-            <div class="leader-details">
-              <h3 class="leader-name">Куценко Ілля</h3>
-              <p class="leader-faculty">Студент ННІ громадського здоров'я</p>
-              <div class="leader-contact-strip">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (097) 977-81-06</span>
-                <a href="https://t.me/ilya_kek" target="_blank" class="contact-telegram">@ilya_kek</a>
+            <div>
+              <div class="leader-header-compact">
+                <div class="leader-miniature" title="Куценко Ілля">
+                  <span class="leader-miniature-text">ІК</span>
+                </div>
+                <span class="leader-role-badge" data-i18n="lead.role.deputy">ЗАСТУПНИК ГОЛОВИ</span>
               </div>
+              <div class="leader-details">
+                <h3 class="leader-name" data-i18n="lead.name.kutsenko">Куценко Ілля</h3>
+                <p class="leader-faculty" data-i18n="lead.fac.kutsenko">Студент ННІ громадського здоров'я</p>
+              </div>
+            </div>
+            <div class="leader-contact-strip">
+              <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (097) 977-81-06</span>
+              <a href="https://t.me/ilya_kek" target="_blank" class="contact-telegram">@ilya_kek</a>
             </div>
           </div>
 
           <!-- Leader 4 -->
           <div class="leader-card reveal-item delay-4">
-            <div class="leader-photo-wrapper">
-              <img src="./assets/images/secretary_elina_melnyk.jpg" alt="Мельник Еліна Євгенівна" class="leader-photo">
-              <span class="leader-role-badge">СЕКРЕТАР ПРОФКОМУ</span>
-            </div>
-            <div class="leader-details">
-              <h3 class="leader-name">Мельник Еліна</h3>
-              <p class="leader-faculty">Студентка ННІ медицини</p>
-              <div class="leader-contact-strip">
-                <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (098) 866-40-41</span>
-                <a href="https://t.me/melina5564" target="_blank" class="contact-telegram">@melina5564</a>
+            <div>
+              <div class="leader-header-compact">
+                <div class="leader-miniature" title="Мельник Еліна">
+                  <span class="leader-miniature-text">ЕМ</span>
+                </div>
+                <span class="leader-role-badge" data-i18n="lead.role.secretary">СЕКРЕТАР ПРОФКОМУ</span>
               </div>
+              <div class="leader-details">
+                <h3 class="leader-name" data-i18n="lead.name.melnyk">Мельник Еліна</h3>
+                <p class="leader-faculty" data-i18n="lead.fac.melnyk">Студентка ННІ медицини</p>
+              </div>
+            </div>
+            <div class="leader-contact-strip">
+              <span style="font-size: 0.8rem; color: var(--text-muted);">+38 (098) 866-40-41</span>
+              <a href="https://t.me/melina5564" target="_blank" class="contact-telegram">@melina5564</a>
             </div>
           </div>
         </div>
@@ -756,14 +682,14 @@
     </section>
 
     <!-- ==========================================================================
-         COMMISSIONS SECTION
+         COMMISSIONS SECTION (MINIATURE BADGES)
          ========================================================================== -->
     <section class="section-padding" id="commissions">
       <div class="container">
         <div class="section-header reveal-item">
-          <span class="section-tag">Структурні підрозділи</span>
-          <h2 class="section-title">КОМІСІЇ ПРОФКОМУ СТУДЕНТІВ</h2>
-          <p class="section-desc">
+          <span class="section-tag" data-i18n="comm.tag">Структурні підрозділи</span>
+          <h2 class="section-title" data-i18n="comm.title">КОМІСІЇ ПРОФКОМУ СТУДЕНТІВ</h2>
+          <p class="section-desc" data-i18n="comm.desc">
             Чотири профільні напрями, які організовують культурні заходи, розвивають спорт, ведуть медіаресурси та контролюють умови побуту в гуртожитках.
           </p>
         </div>
@@ -773,17 +699,17 @@
           <div class="glass-card commission-card reveal-item delay-1">
             <div>
               <div class="comm-header">
-                <img src="./assets/images/commission_cultural_daniil_bondarev.jpg" alt="Данііл Бондарєв" class="comm-head-photo">
+                <div class="comm-miniature" title="Культурно-масова комісія">🎭</div>
                 <div class="comm-titles">
-                  <span class="section-tag" style="margin-bottom: 6px;">Культура & Дозвілля</span>
-                  <h3>Культурно-масова комісія</h3>
-                  <div class="comm-leader-info">Голова: Бондарєв Данііл Олегович (ННІМ)</div>
+                  <span class="section-tag" style="margin-bottom: 6px;" data-i18n="comm.c1.tag">Культура & Дозвілля</span>
+                  <h3 data-i18n="comm.c1.title">Культурно-масова комісія</h3>
+                  <div class="comm-leader-info" data-i18n="comm.c1.head">Голова: Бондарєв Данііл Олегович (ННІМ)</div>
                 </div>
               </div>
-              <p class="comm-desc">
+              <p class="comm-desc" data-i18n="comm.c1.desc">
                 Організація студентського дозвілля: благодійні бали, творчі вечори, концерти, фестивалі, конкурси та великі університетські події.
               </p>
-              <div class="comm-how-to">
+              <div class="comm-how-to" data-i18n-html="comm.c1.how">
                 <strong>Як потрапити:</strong> звернутися до голови комісії або заповнити анкету активіста, проявити креативність та енергію в підготовці подій.
               </div>
             </div>
@@ -797,17 +723,17 @@
           <div class="glass-card commission-card reveal-item delay-2">
             <div>
               <div class="comm-header">
-                <img src="./assets/images/commission_social_info_oleksandra_yushchuk.jpg" alt="Олександра Ющук" class="comm-head-photo">
+                <div class="comm-miniature" title="Соціально-інформаційна комісія">📢</div>
                 <div class="comm-titles">
-                  <span class="section-tag" style="margin-bottom: 6px;">Медіа & Комунікації</span>
-                  <h3>Соціально-інформаційна комісія</h3>
-                  <div class="comm-leader-info">Голова: Ющук Олександра Сергіївна (ННІМ)</div>
+                  <span class="section-tag" style="margin-bottom: 6px;" data-i18n="comm.c2.tag">Медіа & Комунікації</span>
+                  <h3 data-i18n="comm.c2.title">Соціально-інформаційна комісія</h3>
+                  <div class="comm-leader-info" data-i18n="comm.c2.head">Голова: Ющук Олександра Сергіївна (ННІМ)</div>
                 </div>
               </div>
-              <p class="comm-desc">
+              <p class="comm-desc" data-i18n="comm.c2.desc">
                 Висвітлення діяльності Профкому, ведення Telegram-каналу (5.4K) та Instagram, створення афіш, дизайн, копірайтинг та комунікація зі студентами.
               </p>
-              <div class="comm-how-to">
+              <div class="comm-how-to" data-i18n-html="comm.c2.how">
                 <strong>Як потрапити:</strong> написати голові комісії, мати бажання працювати з контентом, дизайном або SMM.
               </div>
             </div>
@@ -821,17 +747,17 @@
           <div class="glass-card commission-card reveal-item delay-3">
             <div>
               <div class="comm-header">
-                <img src="./assets/images/commission_sports_yulia_lukyanenko.jpg" alt="Юлія Лук'яненко" class="comm-head-photo">
+                <div class="comm-miniature" title="Спортивно-оздоровча комісія">🏆</div>
                 <div class="comm-titles">
-                  <span class="section-tag" style="margin-bottom: 6px;">Спорт & Здоров'я</span>
-                  <h3>Спортивно-оздоровча комісія</h3>
-                  <div class="comm-leader-info">Голова: Лук’яненко Юлія Миколаївна (ФПЛЗСУ)</div>
+                  <span class="section-tag" style="margin-bottom: 6px;" data-i18n="comm.c3.tag">Спорт & Здоров'я</span>
+                  <h3 data-i18n="comm.c3.title">Спортивно-оздоровча комісія</h3>
+                  <div class="comm-leader-info" data-i18n="comm.c3.head">Голова: Лук'яненко Юлія Миколаївна (ФПЛЗСУ)</div>
                 </div>
               </div>
-              <p class="comm-desc">
+              <p class="comm-desc" data-i18n="comm.c3.desc">
                 Популяризація активного способу життя: організація турнірів, футбольних і волейбольних першостей, участь у Spartan Trifecta та забігах.
               </p>
-              <div class="comm-how-to">
+              <div class="comm-how-to" data-i18n-html="comm.c3.how">
                 <strong>Як потрапити:</strong> звернутися до голови комісії, виявити активність у спорті та суддівстві або долучитися до збірних команд.
               </div>
             </div>
@@ -845,17 +771,17 @@
           <div class="glass-card commission-card reveal-item delay-4">
             <div>
               <div class="comm-header">
-                <img src="./assets/images/commission_housing_vitaliy_moroz.png" alt="Віталій Мороз" class="comm-head-photo">
+                <div class="comm-miniature" title="Житлово-побутова комісія">🏢</div>
                 <div class="comm-titles">
-                  <span class="section-tag" style="margin-bottom: 6px;">Побут & Пільги</span>
-                  <h3>Житлово-побутова комісія</h3>
-                  <div class="comm-leader-info">Голова: Мороз Віталій Сергійович (ННІМ)</div>
+                  <span class="section-tag" style="margin-bottom: 6px;" data-i18n="comm.c4.tag">Побут & Пільги</span>
+                  <h3 data-i18n="comm.c4.title">Житлово-побутова комісія</h3>
+                  <div class="comm-leader-info" data-i18n="comm.c4.head">Голова: Мороз Віталій Сергійович (ННІМ)</div>
                 </div>
               </div>
-              <p class="comm-desc">
+              <p class="comm-desc" data-i18n="comm.c4.desc">
                 Контроль умов проживання у студентських гуртожитках, розгляд звернень на знижки 49% та 100% безоплатне поселення для вразливих категорій.
               </p>
-              <div class="comm-how-to">
+              <div class="comm-how-to" data-i18n-html="comm.c4.how">
                 <strong>Як потрапити:</strong> звернутися до голови комісії, цікавитися захистом прав мешканців гуртожитків.
               </div>
             </div>
@@ -866,84 +792,75 @@
           </div>
         </div>
 
-        <!-- Faculty Profbyuro Section -->
-        <div style="margin-top: 80px;">
-          <div class="section-header reveal-item">
-            <span class="section-tag">Представники на місцях</span>
-            <h2 class="section-title">ГОЛОВИ ПРОФБЮРО ФАКУЛЬТЕТІВ</h2>
-            <p class="section-desc">
-              Ваш перший контакт на кожному факультеті та інституті університету:
-            </p>
+        <!-- Faculty Profbyuro Grid -->
+        <div style="margin-top: 60px;">
+          <div class="section-header reveal-item" style="margin-bottom: 32px;">
+            <span class="section-tag" data-i18n="pb.tag">Представники на місцях</span>
+            <h2 class="section-title" style="font-size: clamp(1.4rem, 3vw, 2.2rem);" data-i18n="pb.title">ГОЛОВИ ПРОФБЮРО ФАКУЛЬТЕТІВ</h2>
+            <p class="section-desc" data-i18n="pb.desc">Ваш перший контакт на кожному факультеті та інституті університету:</p>
           </div>
 
-          <div class="profbyuro-grid">
-            <!-- Faculty 1 -->
-            <div class="profbyuro-card reveal-item delay-1">
-              <img src="./assets/images/profbyuro_med1_veronika_popova.jpg" alt="Попова Вероніка" class="pb-avatar">
-              <div class="pb-info">
+          <div class="profbyuro-grid reveal-item delay-2">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">М1</div>
+              <div class="profbyuro-info">
                 <h4>Попова Вероніка</h4>
-                <div class="pb-faculty">ННІ медицини</div>
-                <a href="https://t.me/karamboIka" target="_blank" class="pb-tg">@karamboIka</a>
+                <p data-i18n="pb.fac.med1">ННІ медицини</p>
+                <a href="https://t.me/karambolka" target="_blank" class="contact-telegram">@karambolka</a>
               </div>
             </div>
 
-            <!-- Faculty 2 -->
-            <div class="profbyuro-card reveal-item delay-2">
-              <img src="./assets/images/profbyuro_military_sergiy_lenok.jpg" alt="Ленок Сергій" class="pb-avatar">
-              <div class="pb-info">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">ВМ</div>
+              <div class="profbyuro-info">
                 <h4>Ленок Сергій</h4>
-                <div class="pb-faculty">Факультет лікарів для ЗСУ</div>
-                <a href="https://t.me/Blackgraya1m" target="_blank" class="pb-tg">@Blackgraya1m</a>
+                <p data-i18n="pb.fac.military">ФПЛЗСУ</p>
+                <a href="https://t.me/Blackgraya1m" target="_blank" class="contact-telegram">@Blackgraya1m</a>
               </div>
             </div>
 
-            <!-- Faculty 3 -->
-            <div class="profbyuro-card reveal-item delay-3">
-              <img src="./assets/images/profbyuro_pediatrics_liza_kharyshuk.jpg" alt="Харишук Єлизавета" class="pb-avatar">
-              <div class="pb-info">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">ПЕД</div>
+              <div class="profbyuro-info">
                 <h4>Харишук Єлизавета</h4>
-                <div class="pb-faculty">Факультет Педіатрії</div>
-                <a href="https://t.me/Lizo4ka_kh" target="_blank" class="pb-tg">@Lizo4ka_kh</a>
+                <p data-i18n="pb.fac.pediatrics">Факультет Педіатрії</p>
+                <a href="https://t.me/Lizo4ka_kh" target="_blank" class="contact-telegram">@Lizo4ka_kh</a>
               </div>
             </div>
 
-            <!-- Faculty 4 -->
-            <div class="profbyuro-card reveal-item delay-4">
-              <img src="./assets/images/profbyuro_stomatology_anna_mykhaylenko.jpg" alt="Михайленко Анна" class="pb-avatar">
-              <div class="pb-info">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">СТОМ</div>
+              <div class="profbyuro-info">
                 <h4>Михайленко Анна</h4>
-                <div class="pb-faculty">ННІ стоматології</div>
-                <a href="https://t.me/Anna_mik" target="_blank" class="pb-tg">@Anna_mik</a>
+                <p data-i18n="pb.fac.stomatology">ННІ стоматології</p>
+                <a href="https://t.me/Anna_mlk" target="_blank" class="contact-telegram">@Anna_mlk</a>
               </div>
             </div>
 
-            <!-- Faculty 5 -->
-            <div class="profbyuro-card reveal-item delay-1">
-              <img src="./assets/images/profbyuro_pharma_anastasiya_dynnyk.jpg" alt="Динник Анастасія" class="pb-avatar">
-              <div class="pb-info">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">ФАРМ</div>
+              <div class="profbyuro-info">
                 <h4>Динник Анастасія</h4>
-                <div class="pb-faculty">Фармацевтичний факультет</div>
-                <a href="https://t.me/an_dnk" target="_blank" class="pb-tg">@an_dnk</a>
+                <p data-i18n="pb.fac.pharma">Фармацевтичний факультет</p>
+                <a href="https://t.me/an_dnk" target="_blank" class="contact-telegram">@an_dnk</a>
               </div>
             </div>
 
-            <!-- Faculty 6 -->
-            <div class="profbyuro-card reveal-item delay-2">
-              <img src="./assets/images/profbyuro_mental_alina_bilous.png" alt="Білоус Аліна" class="pb-avatar">
-              <div class="pb-info">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">ПСИХ</div>
+              <div class="profbyuro-info">
                 <h4>Білоус Аліна</h4>
-                <div class="pb-faculty">ННІ психічного здоров’я</div>
-                <a href="https://t.me/blondish_a" target="_blank" class="pb-tg">@blondish_a</a>
+                <p data-i18n="pb.fac.mental">ННІ психічного здоров'я</p>
+                <a href="https://t.me/blondish_a" target="_blank" class="contact-telegram">@blondish_a</a>
               </div>
             </div>
 
-            <!-- Faculty 7 -->
-            <div class="profbyuro-card reveal-item delay-3">
-              <img src="./assets/images/profbyuro_public_health_ilya_kutsenko.jpg" alt="Куценко Ілля" class="pb-avatar">
-              <div class="pb-info">
+            <div class="profbyuro-card">
+              <div class="profbyuro-miniature">ГРЗ</div>
+              <div class="profbyuro-info">
                 <h4>Куценко Ілля</h4>
-                <div class="pb-faculty">ННІ громадського здоров’я</div>
-                <a href="https://t.me/ilya_kek" target="_blank" class="pb-tg">@ilya_kek</a>
+                <p data-i18n="pb.fac.public">ННІ громадського здоров'я</p>
+                <a href="https://t.me/ilya_kek" target="_blank" class="contact-telegram">@ilya_kek</a>
               </div>
             </div>
           </div>
@@ -952,407 +869,349 @@
     </section>
 
     <!-- ==========================================================================
-         STUDENT CLUBS SECTION
+         STUDENT CLUBS
          ========================================================================== -->
     <section class="section-padding" id="clubs">
       <div class="container">
         <div class="section-header reveal-item">
-          <span class="section-tag">Студентське ком'юніті</span>
-          <h2 class="section-title">КЛУБИ ЗА ІНТЕРЕСАМИ</h2>
-          <p class="section-desc">
-            Простір для самореалізації, нових знайомств та відпочинку від складних медичних пар. Обирай свій напрямок!
+          <span class="section-tag" data-i18n="clubs.tag">Студентське життя</span>
+          <h2 class="section-title" data-i18n="clubs.title">КЛУБИ ЗА ІНТЕРЕСАМИ ПРОФКОМУ</h2>
+          <p class="section-desc" data-i18n="clubs.desc">
+            Простір для самовираження, знайомств та відпочинку від пар і чергувань.
           </p>
         </div>
 
         <div class="clubs-grid">
-          <!-- Club 1 -->
-          <div class="club-card reveal-item delay-1">
+          <div class="glass-card club-card reveal-item delay-1">
             <div>
-              <span class="club-tag">Інтелект & Стратегія</span>
-              <h3 class="club-title">ДЕБАТНИЙ КЛУБ</h3>
-              <p class="club-desc">
-                Майданчик для запеклих суперечок, аргументації та критичного мислення. Регулярні офлайн-турніри в безпечному укритті морфологічного корпусу.
+              <span class="benefit-tag" style="margin-bottom: 12px;">Debate</span>
+              <h3 class="club-title" data-i18n="clubs.c1.title">Дебатний клуб NMU</h3>
+              <p class="club-desc" data-i18n="clubs.c1.desc">
+                Розвиток ораторського мистецтва, критичного мислення та медичної біоетики. Регулярні зустрічі в укритті.
               </p>
             </div>
-            <a href="https://t.me/Profkom_NMU" target="_blank" class="contact-telegram">Реєстрація на гру →</a>
+            <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">Долучитися</button>
           </div>
 
-          <!-- Club 2 -->
-          <div class="club-card reveal-item delay-2">
+          <div class="glass-card club-card reveal-item delay-2">
             <div>
-              <span class="club-tag">Психологія & Азарт</span>
-              <h3 class="club-title">КЛУБ МАФІЇ</h3>
-              <p class="club-desc">
-                Класична та спортивна мафія щотижня. Вчися зчитувати мову тіла, будувати союзи та розкривати найхитріших гравців.
+              <span class="benefit-tag" style="margin-bottom: 12px;">Psychology & Forensics</span>
+              <h3 class="club-title" data-i18n="clubs.c2.title">True Crime Community</h3>
+              <p class="club-desc" data-i18n="clubs.c2.desc">
+                Аналіз резонансних судових справ, судова психіатрія та криміналістичний аналіз із лікарями-експертами.
               </p>
             </div>
-            <a href="https://t.me/Profkom_NMU" target="_blank" class="contact-telegram">Приєднатися до столу →</a>
+            <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">Долучитися</button>
           </div>
 
-          <!-- Club 3 -->
-          <div class="club-card reveal-item delay-3">
+          <div class="glass-card club-card reveal-item delay-3">
             <div>
-              <span class="club-tag">Книги & Філософія</span>
-              <h3 class="club-title">КНИЖКОВИЙ КЛУБ</h3>
-              <p class="club-desc">
-                Обговорення світових бестселерів, художньої літератури та нон-фікшн. Затишна атмосфера, чай та інтелектуальні бесіди.
+              <span class="benefit-tag" style="margin-bottom: 12px;">Board Games</span>
+              <h3 class="club-title" data-i18n="clubs.c3.title">Клуб Настільних Ігор & Мафія</h3>
+              <p class="club-desc" data-i18n="clubs.c3.desc">
+                Щотижневі турніри з Мафії, Codenames, монополії та стратегій для розвантаження після складних пар.
               </p>
             </div>
-            <a href="https://t.me/Profkom_NMU" target="_blank" class="contact-telegram">Читати разом →</a>
+            <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">Долучитися</button>
           </div>
 
-          <!-- Club 4 -->
-          <div class="club-card reveal-item delay-1">
+          <div class="glass-card club-card reveal-item delay-1">
             <div>
-              <span class="club-tag">Кіно & Естетика</span>
-              <h3 class="club-title">КІНОКЛУБ</h3>
-              <p class="club-desc">
-                Перегляд культових шедеврів, медичних драм та авторського кіно з подальшим обговоренням режисерських ходів та психології героїв.
+              <span class="benefit-tag" style="margin-bottom: 12px;">Cinema & Books</span>
+              <h3 class="club-title" data-i18n="clubs.c4.title">Книжковий та Кіноклуб</h3>
+              <p class="club-desc" data-i18n="clubs.c4.desc">
+                Спільний перегляд культових медичних фільмів, документалок та обговорення світової літератури.
               </p>
             </div>
-            <a href="https://t.me/Profkom_NMU" target="_blank" class="contact-telegram">Розклад сеансів →</a>
+            <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">Долучитися</button>
           </div>
 
-          <!-- Club 5 -->
-          <div class="club-card reveal-item delay-2">
+          <div class="glass-card club-card reveal-item delay-2">
             <div>
-              <span class="club-tag">Криміналістика & Психологія</span>
-              <h3 class="club-title">TRUE CRIME КЛУБ</h3>
-              <p class="club-desc">
-                Розбір реальних судових справ, психології злочинців та судово-медичних аспектів найзаплутаніших розслідувань світу.
+              <span class="benefit-tag" style="margin-bottom: 12px;">Art & Drama</span>
+              <h3 class="club-title" data-i18n="clubs.c5.title">Театральна Студія</h3>
+              <p class="club-desc" data-i18n="clubs.c5.desc">
+                Постановка студентських вистав, участь у благодійних вечорах та ректорських концертах.
               </p>
             </div>
-            <a href="https://t.me/Profkom_NMU" target="_blank" class="contact-telegram">До розслідування →</a>
+            <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">Долучитися</button>
           </div>
 
-          <!-- Club 6 -->
-          <div class="club-card reveal-item delay-3">
+          <div class="glass-card club-card reveal-item delay-3">
             <div>
-              <span class="club-tag">Сцена & Емоції</span>
-              <h3 class="club-title">ТЕАТРАЛЬНИЙ КЛУБ</h3>
-              <p class="club-desc">
-                Акторська майстерність, сценічна мова, постановка студентських вистав та відвідування прем'єр у київських театрах.
+              <span class="benefit-tag" style="margin-bottom: 12px;">Charity & Aid</span>
+              <h3 class="club-title" data-i18n="clubs.c6.title">Медичне Волонтерство</h3>
+              <p class="club-desc" data-i18n="clubs.c6.desc">
+                Допомога військовим шпиталям, донорство крові, виїзні тренінги з тактичної медицини (Stop the Bleed).
               </p>
             </div>
-            <a href="https://t.me/Profkom_NMU" target="_blank" class="contact-telegram">На сцену →</a>
+            <button class="btn btn-secondary btn-sm" data-open-modal="modal-apply">Долучитися</button>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ==========================================================================
-         CONTACTS & INTERACTIVE APPLICATION
+         CONTACT & APPLICATION SECTION
          ========================================================================== -->
     <section class="section-padding" id="contact">
-      <div class="container">
-        <div class="contact-section-grid">
-          <!-- Left Col: Info -->
-          <div class="glass-card contact-info-card reveal-item delay-1">
-            <span class="section-tag">Штаб-квартира</span>
-            <h2 class="font-druk" style="font-size: 2rem; color: #fff; line-height: 1.1; margin-bottom: 24px;">
-              ЗВ'ЯЗОК З ПРОФКОМОМ
-            </h2>
-            <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6; margin-bottom: 36px;">
-              Ми відкриті до кожного студента. Завітай до нас особисто або звертайся онлайн у зручний для тебе месенджер.
-            </p>
+      <div class="container contact-grid">
+        <div class="reveal-item">
+          <span class="section-tag" data-i18n="contact.tag">Штаб-квартира</span>
+          <h2 class="section-title" data-i18n="contact.title">ЗВ'ЯЗОК З ПРОФКОМОМ</h2>
+          <p class="section-desc" style="margin-bottom: 32px;" data-i18n="contact.desc">
+            Ми відкриті до кожного студента. Завітай до нас особисто або звертайся онлайн у зручний для тебе месенджер.
+          </p>
 
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 32px;">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div class="benefit-icon-box" style="margin-bottom: 0; flex-shrink: 0;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
               </div>
-              <div class="info-text">
-                <h4>АДРЕСА</h4>
-                <p>Проспект Берестейський, 34<br>Морфологічний корпус, 4 поверх, кабінет №438</p>
+              <div>
+                <h4 class="font-druk" style="font-size: 0.95rem; color: var(--heading-color); margin-bottom: 4px;" data-i18n="contact.addrLabel">АДРЕСА</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n-html="contact.addrVal">
+                  Проспект Берестейський, 34<br>Морфологічний корпус, 4 поверх, кабінет №438
+                </p>
               </div>
             </div>
 
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div class="benefit-icon-box" style="margin-bottom: 0; flex-shrink: 0;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                 </svg>
               </div>
-              <div class="info-text">
-                <h4>ТЕЛЕФОН</h4>
-                <p><a href="tel:+380662250189">+38 (066) 225-01-89</a> (Голова ППО)</p>
+              <div>
+                <h4 class="font-druk" style="font-size: 0.95rem; color: var(--heading-color); margin-bottom: 4px;" data-i18n="contact.phoneLabel">ТЕЛЕФОН</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;" data-i18n="contact.phoneVal">+38 (066) 225-01-89 (Голова ППО)</p>
               </div>
             </div>
 
-            <div class="info-item">
-              <div class="info-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div class="benefit-icon-box" style="margin-bottom: 0; flex-shrink: 0;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
               </div>
-              <div class="info-text">
-                <h4>EMAIL</h4>
-                <p><a href="mailto:studprofkom.nmu@gmail.com">studprofkom.nmu@gmail.com</a></p>
+              <div>
+                <h4 class="font-druk" style="font-size: 0.95rem; color: var(--heading-color); margin-bottom: 4px;" data-i18n="contact.emailLabel">EMAIL</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">studprofkom.nmu@gmail.com</p>
               </div>
-            </div>
-
-            <!-- Social Media Handles -->
-            <div class="socials-row">
-              <a href="https://t.me/Profkom_NMU" target="_blank" class="social-pill">
-                <span>Telegram</span>
-              </a>
-              <a href="https://www.instagram.com/profkom_nmu" target="_blank" class="social-pill">
-                <span>Instagram</span>
-              </a>
-              <a href="https://www.tiktok.com/@profkom_nmu" target="_blank" class="social-pill">
-                <span>TikTok</span>
-              </a>
             </div>
           </div>
 
-          <!-- Right Col: Application Form -->
-          <div class="glass-card reveal-item delay-2">
-            <span class="section-tag">Швидка заявка</span>
-            <h3 class="font-druk" style="font-size: 1.6rem; color: #fff; margin-bottom: 8px;">ВСТУП ДО ПРОФКОМУ / АКТИВУ</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px;">
-              Заповни дані, і ми оформимо твоє членство або запросимо до команди комісій:
-            </p>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="https://t.me/Profkom_NMU" target="_blank" class="btn btn-secondary btn-sm">Telegram</a>
+            <a href="https://instagram.com/profkom_nmu" target="_blank" class="btn btn-secondary btn-sm">Instagram</a>
+            <a href="https://tiktok.com/@profkom_nmu" target="_blank" class="btn btn-secondary btn-sm">TikTok</a>
+          </div>
+        </div>
 
-            <form class="app-form">
+        <!-- Application Form -->
+        <div class="glass-card reveal-item delay-1" style="padding: 32px;">
+          <span class="section-tag" data-i18n="form.tag">Швидка заявка</span>
+          <h3 class="font-druk" style="font-size: 1.35rem; color: var(--heading-color); margin-bottom: 8px;" data-i18n="form.title">ВСТУП ДО ПРОФКОМУ / АКТИВУ</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;" data-i18n="form.desc">
+            Заповни дані, і ми оформимо твоє членство або запросимо до команди комісій:
+          </p>
+
+          <form class="app-form">
+            <div class="form-group">
+              <label class="form-label" data-i18n="form.name">ПРІЗВИЩЕ, ІМ'Я, ПО БАТЬКОВІ</label>
+              <input type="text" class="form-input" required data-i18n-placeholder="form.namePh" placeholder="Наприклад: Коваленко Дарія Олександрівна">
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
               <div class="form-group">
-                <label class="form-label" for="apply-name">Прізвище, Ім'я, По батькові</label>
-                <input type="text" id="apply-name" class="form-input" placeholder="Наприклад: Коваленко Дарія Олександрівна" required>
-              </div>
-
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label" for="apply-faculty">Факультет / Інститут</label>
-                  <select id="apply-faculty" class="form-select" required>
-                    <option value="" disabled selected>Оберіть факультет...</option>
-                    <option value="ННІ медицини">ННІ медицини</option>
-                    <option value="ФПЛЗСУ">ФПЛЗСУ (Військовий)</option>
-                    <option value="Факультет Педіатрії">Факультет Педіатрії</option>
-                    <option value="ННІ стоматології">ННІ стоматології</option>
-                    <option value="Фармацевтичний">Фармацевтичний факультет</option>
-                    <option value="ННІ психічного здоров'я">ННІ психічного здоров'я</option>
-                    <option value="ННІ громадського здоров'я">ННІ громадського здоров'я</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="apply-course">Курс та група</label>
-                  <input type="text" id="apply-course" class="form-input" placeholder="Наприклад: 2 курс, 10204" required>
-                </div>
-              </div>
-
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <div class="form-group">
-                  <label class="form-label" for="apply-phone">Номер телефону</label>
-                  <input type="tel" id="apply-phone" class="form-input" placeholder="+38 (0__) ___-__-__" required>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="apply-tg">Нік у Telegram</label>
-                  <input type="text" id="apply-tg" class="form-input" placeholder="@username" required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="apply-interest">Напрямок, який цікавить</label>
-                <select id="apply-interest" class="form-select">
-                  <option value="Членство у профспілці (захист + пільги)">Отримання членства та пільг (соц. стипендія / гуртожиток)</option>
-                  <option value="Культурно-масова комісія">Культурно-масова комісія (організація івентів)</option>
-                  <option value="Соціально-інформаційна комісія">Соціально-інформаційна комісія (SMM / дизайн / медіа)</option>
-                  <option value="Спортивно-оздоровча комісія">Спортивно-оздоровча комісія (змагання / турніри)</option>
-                  <option value="Житлово-побутова комісія">Житлово-побутова комісія (контроль гуртожитків)</option>
-                  <option value="Студентські клуби">Участь у клубах (дебати, мафія, книжковий)</option>
+                <label class="form-label" data-i18n="form.fac">ФАКУЛЬТЕТ / ІНСТИТУТ</label>
+                <select class="form-select" required>
+                  <option value="" disabled selected data-i18n="form.facDefault">Оберіть факультет...</option>
+                  <option value="med1">ННІ медицини №1</option>
+                  <option value="med2">Медичний факультет №2</option>
+                  <option value="pediatrics">Факультет педіатрії</option>
+                  <option value="stomatology">ННІ стоматології</option>
+                  <option value="pharma">Фармацевтичний факультет</option>
+                  <option value="military">ФПЛЗСУ (Військові лікарі)</option>
+                  <option value="mental">ННІ психічного здоров'я</option>
+                  <option value="public">ННІ громадського здоров'я</option>
                 </select>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-lg btn-druk" style="width: 100%; margin-top: 10px;">
-                ВІДПРАВИТИ ЗАЯВКУ
-              </button>
-            </form>
-          </div>
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.course">КУРС ТА ГРУПА</label>
+                <input type="text" class="form-input" required data-i18n-placeholder="form.coursePh" placeholder="Наприклад: 2 курс, 10204">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.phone">НОМЕР ТЕЛЕФОНУ</label>
+                <input type="tel" class="form-input" required placeholder="+38 (0__) ___-__-__">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" data-i18n="form.tg">НІК У TELEGRAM</label>
+                <input type="text" class="form-input" required placeholder="@username">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-i18n="form.interest">НАПРЯМОК, ЯКИЙ ЦІКАВИТЬ</label>
+              <select class="form-select">
+                <option value="membership" data-i18n="form.intOpt1">Отримання членства та пільг (соц. стипендія / гуртожиток)</option>
+                <option value="culture" data-i18n="form.intOpt2">Культурно-масова комісія (заходи, бали, концерти)</option>
+                <option value="media" data-i18n="form.intOpt3">Соціально-інформаційна комісія (SMM, дизайн, фото)</option>
+                <option value="sports" data-i18n="form.intOpt4">Спортивна комісія (турніри, змагання)</option>
+                <option value="housing" data-i18n="form.intOpt5">Житлово-побутова комісія (гуртожитки)</option>
+                <option value="clubs" data-i18n="form.intOpt6">Клуби за інтересами (дебати, мафія, кіноклуб)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-druk" style="width: 100%; margin-top: 10px;" data-i18n="form.submit">
+              ВІДПРАВИТИ ЗАЯВКУ
+            </button>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
   <!-- ==========================================================================
-       MODAL 1: ONLINE APPLICATION DIALOG
+       SITE FOOTER
        ========================================================================== -->
-  <div class="modal-backdrop" id="modal-apply" role="dialog" aria-modal="true">
-    <div class="modal-container">
-      <button class="modal-close-btn" data-close-modal aria-label="Закрити вікно">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
+  <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); padding: 50px 0 30px; position: relative; z-index: 2;">
+    <div class="container" style="display: flex; flex-direction: column; gap: 30px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src="./assets/images/profkom_logo_transparent.png" alt="Профком" style="width: 48px; height: 48px;">
+          <div>
+            <h4 class="font-druk" style="font-size: 1.1rem; color: var(--heading-color);" data-i18n="brand.name">ПРОФКОМ НМУ</h4>
+            <p style="font-size: 0.78rem; color: var(--emerald-bright); font-weight: 700;" data-i18n="brand.sub">СИЛА ТА ОПОРА СТУДЕНТІВ</p>
+          </div>
+        </div>
 
-      <span class="section-tag" style="margin-bottom: 8px;">Вступний портал</span>
-      <h3 class="font-druk" style="font-size: 1.5rem; color: #fff; margin-bottom: 8px;">ЗАЯВА НА ВСТУП У ПРОФКОМ</h3>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">
-        Після заповнення форми ми зв'яжемося з Вами в Telegram для підтвердження та оформлення картки профспілки.
+        <div style="display: flex; gap: 20px; font-size: 0.88rem; color: var(--text-muted); flex-wrap: wrap;">
+          <a href="#about" data-i18n="nav.about">Про нас</a>
+          <a href="#benefits" data-i18n="nav.benefits">Переваги</a>
+          <a href="#services" data-i18n="nav.services">Пільги & Стипендії</a>
+          <a href="#leadership" data-i18n="nav.leadership">Команда</a>
+          <a href="#commissions" data-i18n="nav.commissions">Комісії</a>
+          <a href="#clubs" data-i18n="nav.clubs">Клуби</a>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 24px; border-top: 1px solid var(--border-subtle); font-size: 0.8rem; color: var(--text-dim);">
+        <div>
+          © 2026 <span data-i18n="footer.union">Первинна профспілкова організація студентів</span>. <span data-i18n="footer.university">Національний медичний університет імені О.О. Богомольця</span>.
+        </div>
+        <div data-i18n="footer.rights">Всі права захищено.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+  <!-- Modal 1: Quick Application -->
+  <div class="modal-backdrop" id="modal-apply" role="dialog" aria-modal="true" aria-labelledby="modal-apply-title">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal aria-label="Закрити модальне вікно">✕</button>
+      <span class="section-tag" data-i18n="form.tag">Швидка заявка</span>
+      <h3 class="font-druk" id="modal-apply-title" style="font-size: 1.3rem; color: var(--heading-color); margin-bottom: 8px;" data-i18n="modal.apply.title">
+        ЗАЯВКА НА ВСТУП ДО ПРОФКОМУ
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;" data-i18n="modal.apply.desc">
+        Заповніть коротку форму для оформлення профспілкового квитка та доступу до всіх студентських пільг.
       </p>
 
       <form class="app-form">
         <div class="form-group">
-          <label class="form-label">ПІБ студента</label>
-          <input type="text" class="form-input" placeholder="Прізвище, Ім'я, По батькові" required>
+          <label class="form-label" data-i18n="form.name">ПРІЗВИЩЕ, ІМ'Я, ПО БАТЬКОВІ</label>
+          <input type="text" class="form-input" required data-i18n-placeholder="form.namePh" placeholder="Наприклад: Коваленко Дарія Олександрівна">
         </div>
-
         <div class="form-group">
-          <label class="form-label">Факультет / Інститут</label>
+          <label class="form-label" data-i18n="form.fac">ФАКУЛЬТЕТ</label>
           <select class="form-select" required>
-            <option value="ННІ медицини">ННІ медицини</option>
-            <option value="ФПЛЗСУ">ФПЛЗСУ</option>
-            <option value="Факультет Педіатрії">Факультет Педіатрії</option>
-            <option value="ННІ стоматології">ННІ стоматології</option>
-            <option value="Фармацевтичний">Фармацевтичний факультет</option>
-            <option value="ННІ психічного здоров'я">ННІ психічного здоров'я</option>
-            <option value="ННІ громадського здоров'я">ННІ громадського здоров'я</option>
+            <option value="" disabled selected data-i18n="form.facDefault">Оберіть факультет...</option>
+            <option value="med1">ННІ медицини №1</option>
+            <option value="med2">Медичний факультет №2</option>
+            <option value="pediatrics">Факультет педіатрії</option>
+            <option value="stomatology">ННІ стоматології</option>
+            <option value="pharma">Фармацевтичний факультет</option>
+            <option value="military">ФПЛЗСУ (Військові лікарі)</option>
+            <option value="mental">ННІ психічного здоров'я</option>
+            <option value="public">ННІ громадського здоров'я</option>
           </select>
         </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-          <div class="form-group">
-            <label class="form-label">Курс</label>
-            <input type="number" min="1" max="6" class="form-input" placeholder="1-6" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Номер групи</label>
-            <input type="text" class="form-input" placeholder="10101" required>
-          </div>
-        </div>
-
         <div class="form-group">
-          <label class="form-label">Telegram контакт (@username)</label>
-          <input type="text" class="form-input" placeholder="@your_handle" required>
+          <label class="form-label" data-i18n="form.course">КУРС ТА ГРУПА</label>
+          <input type="text" class="form-input" required data-i18n-placeholder="form.coursePh" placeholder="Наприклад: 2 курс, 10204">
         </div>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-druk" style="width: 100%; margin-top: 10px;">
-          ПІДТВЕРДИТИ ЗАЯВУ
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.phone">НОМЕР ТЕЛЕФОНУ</label>
+          <input type="tel" class="form-input" required placeholder="+38 (0__) ___-__-__">
+        </div>
+        <div class="form-group">
+          <label class="form-label" data-i18n="form.tg">ТЕЛЕГРАМ ДЛЯ ЗВ'ЯЗКУ</label>
+          <input type="text" class="form-input" required placeholder="@username">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg btn-druk" style="width: 100%; margin-top: 10px;" data-i18n="form.submit">
+          ВІДПРАВИТИ ЗАЯВКУ
         </button>
       </form>
     </div>
   </div>
 
-  <!-- ==========================================================================
-       MODAL 2: ANONYMOUS FEEDBACK & COMPLAINTS
-       ========================================================================== -->
-  <div class="modal-backdrop" id="modal-feedback" role="dialog" aria-modal="true">
-    <div class="modal-container">
-      <button class="modal-close-btn" data-close-modal aria-label="Закрити вікно">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-      </button>
-
-      <span class="section-tag" style="margin-bottom: 8px;">Конфіденційно</span>
-      <h3 class="font-druk" style="font-size: 1.5rem; color: #fff; margin-bottom: 8px;">АНОНІМНА ЛІНІЯ ЗВЕРНЕНЬ</h3>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">
-        Маєш скаргу на умови у гуртожитку, конфлікт на кафедрі чи пропозицію щодо покращення університету? Напиши тут — ми гарантуємо анонімність та вжиття дій.
+  <!-- Modal 2: Anonymous Grievance Box -->
+  <div class="modal-backdrop" id="modal-feedback" role="dialog" aria-modal="true" aria-labelledby="modal-fb-title">
+    <div class="modal-content">
+      <button class="modal-close" data-close-modal aria-label="Закрити модальне вікно">✕</button>
+      <span class="section-tag" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #f87171;">Конфіденційно</span>
+      <h3 class="font-druk" id="modal-fb-title" style="font-size: 1.3rem; color: var(--heading-color); margin-bottom: 8px;" data-i18n="modal.fb.title">
+        СКРИНЬКА ДОВІРИ ТА СКАРГ
+      </h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;" data-i18n="modal.fb.desc">
+        Анонімне звернення щодо порушення прав, корупції, неправомірних дій або проблем у гуртожитку. Захист конфіденційності гарантовано.
       </p>
 
       <form class="app-form">
         <div class="form-group">
-          <label class="form-label">Тема звернення</label>
+          <label class="form-label" data-i18n="modal.fb.type">ТЕМА ЗВЕРНЕННЯ</label>
           <select class="form-select" required>
-            <option value="Умови в гуртожитку">Умови проживання / побут у гуртожитку</option>
-            <option value="Навчальний процес / сесія">Навчальний процес, іспити чи сесія</option>
-            <option value="Стипендії та нарахування">Стипендіальні питання та нарахування</option>
-            <option value="Антикорупція та академічна доброчесність">Антикорупційні зауваження</option>
-            <option value="Пропозиція нового проєкту">Пропозиція нового заходу або клубу</option>
-            <option value="Інше">Інше питання</option>
+            <option value="session" data-i18n="modal.fb.typeOpt1">Порушення прав під час сесії / заліку</option>
+            <option value="dorm" data-i18n="modal.fb.typeOpt2">Проблеми у гуртожитку (побут, тиск)</option>
+            <option value="corruption" data-i18n="modal.fb.typeOpt3">Неправомірні вимоги / корупція</option>
+            <option value="other" data-i18n="modal.fb.typeOpt4">Інше конфіденційне питання</option>
           </select>
         </div>
-
         <div class="form-group">
-          <label class="form-label">Опис проблеми або пропозиція</label>
-          <textarea class="form-textarea" placeholder="Детально опишіть ситуацію (кафедра, номер гуртожитку, суть проблеми)..." required></textarea>
+          <label class="form-label" data-i18n="modal.fb.msg">ОПИС СИТУАЦІЇ</label>
+          <textarea class="form-textarea" rows="4" required data-i18n-placeholder="modal.fb.msgPh" placeholder="Детально опишіть проблему, вкажіть кафедру / гуртожиток..."></textarea>
         </div>
-
         <div class="form-group">
-          <label class="form-label">Контакт для зворотної відповіді (необов'язково)</label>
-          <input type="text" class="form-input" placeholder="Telegram або Email (якщо бажаєте отримати звіт)">
+          <label class="form-label" data-i18n="modal.fb.contact">КОНТАКТ ДЛЯ ЗВОРОТНОГО ЗВ'ЯЗКУ (ЗА БАЖАННЯМ)</label>
+          <input type="text" class="form-input" data-i18n-placeholder="modal.fb.contactPh" placeholder="Номер телефону або Telegram нік (можна залишити пустим для повної анонімності)">
         </div>
-
-        <div style="margin-bottom: 16px;">
-          <a href="https://docs.google.com/forms/d/1ik0n_xhth9Z_78Jnn6ER1o_zkTRPLiYj1lxiAQclieU/edit" target="_blank" style="font-size: 0.85rem; color: var(--emerald-bright); text-decoration: underline;">
-            Або відкрити офіційну Google Форму Профкому →
-          </a>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-druk" style="width: 100%;">
+        <button type="submit" class="btn btn-primary btn-lg btn-druk" style="width: 100%; margin-top: 10px;" data-i18n="modal.fb.submit">
           НАДІСЛАТИ АНОНІМНО
         </button>
       </form>
     </div>
   </div>
 
-  <!-- ==========================================================================
-       SITE FOOTER
-       ========================================================================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
-            <img src="./assets/images/profkom_logo_transparent.png" alt="Профком НМУ" style="width: 48px; height: 48px; object-fit: contain;">
-            <img src="./assets/images/nmu_logo_white.svg" alt="НМУ" style="width: 38px; height: 38px;">
-          </div>
-          <h4 class="font-druk">ПРОФКОМ СТУДЕНТІВ НМУ</h4>
-          <p>
-            Первинна профспілкова організація студентів Національного медичного університету імені О.О. Богомольця. Захист прав, соціальна підтримка та лідерство.
-          </p>
-        </div>
-
-        <div>
-          <h5 class="footer-links-title">Навігація</h5>
-          <div class="footer-links">
-            <a href="#about">Про організацію</a>
-            <a href="#benefits">Переваги членства</a>
-            <a href="#services">Соціальні стипендії</a>
-            <a href="#services">Знижки на гуртожитки</a>
-            <a href="#leadership">Керівництво</a>
-          </div>
-        </div>
-
-        <div>
-          <h5 class="footer-links-title">Підрозділи</h5>
-          <div class="footer-links">
-            <a href="#commissions">Культурно-масова</a>
-            <a href="#commissions">Соціально-інформаційна</a>
-            <a href="#commissions">Спортивно-оздоровча</a>
-            <a href="#commissions">Житлово-побутова</a>
-            <a href="#clubs">Студентські клуби</a>
-          </div>
-        </div>
-
-        <div>
-          <h5 class="footer-links-title">Штаб-квартира</h5>
-          <div class="footer-links" style="font-size: 0.88rem; color: var(--text-muted);">
-            <p>просп. Берестейський, 34</p>
-            <p>Морфологічний корпус, каб. 438</p>
-            <p><a href="mailto:studprofkom.nmu@gmail.com" style="color: var(--emerald-bright);">studprofkom.nmu@gmail.com</a></p>
-            <p><a href="tel:+380662250189">+38 (066) 225-01-89</a></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>
-          © Національний медичний університет імені О.О. Богомольця. ППО студентів. Всі права захищено.
-        </div>
-        <div>
-          Розміщено на умовах ліцензії Creative Commons Attribution 4.0 International
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Back to top floating button -->
-  <button class="back-to-top" aria-label="Вгору">
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Повернутися нагору">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
   </button>
 
-  <!-- JavaScript -->
+  <!-- Main JavaScript Engine -->
   <script src="./assets/js/main.js"></script>
 </body>
 </html>
