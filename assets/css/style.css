@@ -280,6 +280,22 @@ ul {
   z-index: 1;
 }
 
+/* Analog Micro-Noise Texture Overlay (Anti-Banding Luxury Depth) */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+[data-theme="light"] .noise-overlay {
+  opacity: 0.018;
+}
+
 .bg-watermark {
   position: absolute;
   font-family: var(--font-display);
@@ -350,13 +366,23 @@ ul {
 
 .glass-card {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
   position: relative;
+}
+
+[data-theme="light"] .glass-card {
+  border-top: 1px solid rgba(255, 255, 255, 0.95);
+  border-left: 1px solid rgba(10, 30, 25, 0.09);
+  border-right: 1px solid rgba(10, 30, 25, 0.06);
+  border-bottom: 1px solid rgba(10, 30, 25, 0.09);
 }
 
 .glass-card:hover {
@@ -791,19 +817,67 @@ ul {
   font-weight: 500;
 }
 
-/* 3D Stack Card */
+/* ==========================================================================
+   DIGITAL UNION PASS 2026 (HERO INTERACTIVE 3D HOLOGRAPHIC CARD)
+   ========================================================================== */
 .hero-card-stack {
   position: relative;
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
+  perspective: 1200px;
 }
 
-.stack-layer-main {
-  padding: 36px;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border-emerald);
-  box-shadow: var(--shadow-lg), 0 0 30px -10px var(--emerald-glow);
+.digital-pass-card {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(16, 24, 40, 0.94) 0%, rgba(8, 14, 26, 0.98) 100%);
+  border-radius: 28px;
+  padding: 34px;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(16, 185, 129, 0.2);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 50px -10px var(--emerald-glow);
+  overflow: hidden;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+[data-theme="light"] .digital-pass-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border-top: 1px solid rgba(255, 255, 255, 1);
+  border-left: 1px solid rgba(5, 150, 105, 0.25);
+  border-right: 1px solid rgba(5, 150, 105, 0.2);
+  border-bottom: 1px solid rgba(5, 150, 105, 0.4);
+  box-shadow: 0 25px 50px -12px rgba(10, 35, 25, 0.12), 0 0 35px -5px var(--emerald-glow);
+}
+
+.pass-hologram-glare {
+  position: absolute;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(52, 211, 153, 0.15) 36%,
+    rgba(6, 182, 212, 0.22) 48%,
+    rgba(255, 255, 255, 0.35) 52%,
+    rgba(168, 85, 247, 0.15) 58%,
+    transparent 72%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  mix-blend-mode: color-dodge;
+  z-index: 5;
+}
+
+.digital-pass-card:hover .pass-hologram-glare {
+  opacity: 1;
 }
 
 .seal-watermark {
@@ -814,6 +888,243 @@ ul {
   height: 100px;
   opacity: 0.08;
   pointer-events: none;
+}
+
+.pass-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pass-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+}
+
+.pass-id-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.pass-org-name {
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--heading-color);
+  line-height: 1.2;
+}
+
+.pass-org-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--emerald-bright);
+  text-transform: uppercase;
+}
+
+.pass-nfc-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald-bright);
+}
+
+/* Metallic EMV Microchip */
+.pass-chip-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-chip {
+  width: 52px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #d4af37 0%, #f9e8a2 35%, #aa7c11 70%, #edd377 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 3px 8px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.chip-line {
+  position: absolute;
+  background: rgba(80, 50, 5, 0.5);
+}
+
+.chip-l1 {
+  width: 100%;
+  height: 1px;
+  top: 50%;
+  left: 0;
+}
+
+.chip-l2 {
+  height: 100%;
+  width: 1px;
+  left: 33%;
+  top: 0;
+}
+
+.chip-l3 {
+  height: 100%;
+  width: 1px;
+  left: 66%;
+  top: 0;
+}
+
+.chip-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(80, 50, 5, 0.5);
+  background: linear-gradient(135deg, #f3d778, #b8860b);
+}
+
+.pass-security-seal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-light);
+}
+
+[data-theme="light"] .pass-security-seal {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--border-subtle);
+  color: var(--text-light);
+}
+
+.pass-body {
+  margin-bottom: 22px;
+  position: relative;
+  z-index: 2;
+}
+
+.pass-serial-wrap {
+  margin-bottom: 16px;
+}
+
+.pass-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.pass-card-number {
+  font-size: 1.15rem;
+  color: var(--heading-color);
+  letter-spacing: 0.04em;
+  word-spacing: 0.1em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pass-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.pass-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.pass-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 2;
+}
+
+.pass-barcode-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pass-barcode {
+  display: flex;
+  align-items: stretch;
+  height: 22px;
+  gap: 2px;
+}
+
+.pass-barcode span {
+  display: inline-block;
+  background: var(--text-muted);
+  width: 2px;
+  border-radius: 1px;
+}
+
+.pass-barcode span:nth-child(2n) {
+  width: 1px;
+}
+
+.pass-barcode span:nth-child(3n) {
+  width: 3px;
+}
+
+.pass-barcode span:nth-child(4n) {
+  width: 2px;
+  opacity: 0.6;
+}
+
+.pass-barcode-text {
+  font-family: monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.pass-status-pill {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid var(--border-emerald-glow);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--emerald-bright);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -856,30 +1167,67 @@ ul {
 }
 
 /* ==========================================================================
-   PRIVILEGES GRID (8 CARDS)
+/* ==========================================================================
+   BENTO GRID (8 PRIVILEGES EDITORIAL ARCHITECTURE)
    ========================================================================== */
-.benefits-grid {
+.bento-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
-@media (max-width: 1100px) {
-  .benefits-grid {
+@media (max-width: 1024px) {
+  .bento-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.benefit-card {
-  padding: 28px;
+@media (max-width: 680px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bento-card {
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
 }
 
-.benefit-card:hover {
+.bento-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-emerald);
+  box-shadow: var(--shadow-lg), 0 0 30px -10px var(--emerald-glow);
+}
+
+.bento-span-2 {
+  grid-column: span 2;
+}
+
+@media (max-width: 680px) {
+  .bento-span-2 {
+    grid-column: span 1;
+  }
+}
+
+.bento-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.bento-icon-box {
+  margin-bottom: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  flex-shrink: 0;
 }
 
 .benefit-icon-box {
@@ -895,12 +1243,34 @@ ul {
   margin-bottom: 20px;
 }
 
+.bento-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.bento-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--heading-color);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
 .benefit-title {
   font-family: var(--font-display);
   font-size: 1.1rem;
   color: var(--heading-color);
   line-height: 1.25;
   margin-bottom: 10px;
+}
+
+.bento-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 .benefit-desc {
@@ -924,6 +1294,166 @@ ul {
 
 [data-theme="light"] .benefit-tag {
   background: rgba(10, 30, 25, 0.04);
+}
+
+.bento-shield-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.shield-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  color: var(--emerald-bright);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.bento-stat-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--emerald-bright);
+  font-size: 0.75rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.bento-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--emerald-bright);
+  margin-top: 14px;
+}
+
+.bento-card-link:hover {
+  text-decoration: underline;
+  gap: 9px;
+}
+
+.housing-discounts-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.housing-pill {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.housing-pill.free {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--emerald-bright);
+}
+
+.housing-pill.disc {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+/* Bento Card: Cultural Ticket Stub */
+.bento-card-tickets {
+  position: relative;
+  padding-right: 48px;
+}
+
+.ticket-status-stamp {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  color: var(--emerald-bright);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px dashed var(--border-emerald);
+  letter-spacing: 0.04em;
+}
+
+.theatre-roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.theatre-tag {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.76rem;
+  color: var(--text-light);
+}
+
+[data-theme="light"] .theatre-tag {
+  background: rgba(10, 30, 25, 0.04);
+}
+
+.ticket-perforated-edge {
+  position: absolute;
+  top: 0;
+  right: 22px;
+  bottom: 0;
+  width: 1px;
+  border-right: 2px dashed var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.ticket-punch-notch {
+  width: 22px;
+  height: 22px;
+  background: var(--bg-darkest);
+  border-radius: 50%;
+  position: absolute;
+  left: -10px;
+  transition: background-color var(--transition-normal);
+}
+
+.ticket-notch-top {
+  top: -11px;
+}
+
+.ticket-notch-bottom {
+  bottom: -11px;
+}
+
+.club-micro-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.club-micro-pills span {
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.72rem;
+  color: var(--emerald-bright);
+  font-weight: 600;
+}
+
+[data-theme="light"] .club-micro-pills span {
+  background: rgba(5, 150, 105, 0.08);
 }
 
 /* ==========================================================================
@@ -1038,25 +1568,158 @@ ul {
   text-transform: uppercase;
 }
 
+/* Interactive Checklist Progress Card */
+.checklist-progress-card {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 18px;
+}
+
+.checklist-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.checklist-progress-label {
+  font-size: 0.88rem;
+  color: var(--text-light);
+}
+
+.checklist-progress-label strong {
+  color: var(--emerald-bright);
+  margin-left: 4px;
+}
+
+.checklist-progress-pct {
+  font-size: 1.05rem;
+  color: var(--emerald-bright);
+}
+
+.checklist-progress-track {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+}
+
+[data-theme="light"] .checklist-progress-track {
+  background: rgba(10, 30, 25, 0.1);
+}
+
+.checklist-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  box-shadow: 0 0 12px var(--emerald-glow);
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.checklist-completed-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid var(--border-emerald-glow);
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--emerald-bright);
+  animation: fadeIn 0.3s ease;
+}
+
+.checklist-tip-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+}
+
 .checklist-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 24px;
 }
 
 .checklist-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 0.92rem;
-  color: var(--text-light);
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-fast);
 }
 
-.checklist-item svg {
+.checklist-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-subtle);
+  transform: translateX(4px);
+}
+
+[data-theme="light"] .checklist-item:hover {
+  background: rgba(10, 30, 25, 0.03);
+}
+
+.checklist-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--border-glass);
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  color: var(--emerald-bright);
-  margin-top: 3px;
+  margin-top: 1px;
+  transition: all var(--transition-fast);
+}
+
+[data-theme="light"] .checklist-checkbox {
+  background: #ffffff;
+  border-color: rgba(10, 30, 25, 0.2);
+}
+
+.checklist-item.checked .checklist-checkbox {
+  background: var(--emerald-primary);
+  border-color: var(--emerald-bright);
+  box-shadow: 0 0 10px var(--emerald-glow);
+}
+
+.checklist-checkbox svg {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #ffffff;
+}
+
+.checklist-item.checked .checklist-checkbox svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.checklist-text {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  transition: opacity var(--transition-fast);
+}
+
+.checklist-item.checked .checklist-text {
+  color: var(--text-muted);
 }
 
 /* ==========================================================================
@@ -1101,21 +1764,40 @@ ul {
 }
 
 .leader-miniature {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.15));
-  border: 2px solid var(--border-emerald);
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 30% 30%, rgba(52, 211, 153, 0.22), rgba(15, 23, 42, 0.95));
+  border-top: 1px solid rgba(255, 255, 255, 0.32);
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  border-right: 1px solid rgba(16, 185, 129, 0.3);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px -2px var(--emerald-glow-subtle);
+  box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.25);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  position: relative;
+}
+
+[data-theme="light"] .leader-miniature {
+  background: radial-gradient(circle at 30% 30%, #ffffff, #d1fae5);
+  border-top: 1px solid rgba(255, 255, 255, 1);
+  border-left: 1px solid rgba(5, 150, 105, 0.3);
+  border-right: 1px solid rgba(5, 150, 105, 0.2);
+  border-bottom: 1px solid rgba(5, 150, 105, 0.45);
+  box-shadow: 0 4px 12px -2px rgba(10, 35, 25, 0.08);
+}
+
+.leader-card:hover .leader-miniature {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 10px 22px -3px var(--emerald-glow);
 }
 
 .leader-miniature-text {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--emerald-bright);
   letter-spacing: -0.02em;
@@ -1757,3 +2439,47 @@ ul {
     font-size: 1.35rem;
   }
 }
+
+/* ==========================================================================
+   FOOTER TECHNICAL TELEMETRY STRIP & MONOSPACE
+   ========================================================================== */
+.footer-technical-strip {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 900px) {
+  .footer-technical-strip {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.footer-tech-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-tech-label {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.footer-tech-val {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.04em;
+}
+

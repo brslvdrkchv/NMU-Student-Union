@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveals();
   initStatCounters();
   initCalculator();
+  initDigitalPass3D();
+  initKyivClock();
   initModals();
   initCardSpotlights();
   initFormHandlers();
@@ -87,7 +89,7 @@ const I18N = {
     "hero.stats.dorms": "Пільги на гуртожиток",
     "hero.stats.clubs": "Клубів за інтересами",
 
-    // Hero 3D Card
+    // Hero 3D Card & Digital Pass 2026
     "hero.card.legal": "Повний правовий захист",
     "hero.card.status": "ОФІЦІЙНИЙ СТАТУС",
     "hero.card.title": "ППО СТУДЕНТІВ УНІВЕРСИТЕТУ",
@@ -95,14 +97,32 @@ const I18N = {
     "hero.card.addr": "Берестейський проспект, 34",
     "hero.card.room": "Морф. корпус, каб. 438",
     "hero.card.head": "Ґвазкова Ярослава",
+    "pass.org": "ПРОФКОМ НМУ",
+    "pass.sub": "STUDENT UNION MEMBER PASS",
+    "pass.verified": "VERIFIED · 2026",
+    "pass.cardIdLabel": "MEMBERSHIP ID",
+    "pass.headLabel": "ГОЛОВА ПРОФКОМУ",
+    "pass.headVal": "Ґвазкова Ярослава",
+    "pass.locationLabel": "ШТАБ-КВАРТИРА",
+    "pass.locationVal": "Каб. 438, Морф. корпус",
+    "pass.status": "ДІЙСНИЙ КВИТОК",
 
     // Marquee
     "marquee.text": "СОЦІАЛЬНИЙ ЗАХИСТ • СТИПЕНДІЇ • ГУРТОЖИТКИ • ЮРИДИЧНА ДОПОМОГА • СПОРТ • ЗНИЖКИ • ВОЛОНТЕРСТВО • КУЛЬТУРА • СТУДЕНТСЬКА РОДИНА",
 
-    // Privileges
+    // Privileges & Bento Grid
     "benefits.tag": "Чому варто бути в Профкомі",
     "benefits.title": "8 КЛЮЧОВИХ ПЕРЕВАГ ДЛЯ МЕДИКІВ",
     "benefits.desc": "Членство у Профкомі — це реальний щоденний захист та фінансові привілеї під час навчання в НМУ.",
+    "bento.shield.title": "ЮРИДИЧНИЙ ТА АКАДЕМІЧНИЙ ЗАХИСТ",
+    "bento.shield.desc": "Повне правове представництво студентів при виникненні спірних ситуацій, загрозі неправомірного відрахування, конфліктах на іспитах та заліках. Член профспілки не може бути відрахований без офіційної згоди Профкому.",
+    "bento.shield.badge1": "Захист від відрахування",
+    "bento.shield.badge2": "24/7 Захист прав",
+    "bento.shield.badge3": "Представництво в ректораті",
+    "bento.calcLink": "Розрахувати пакет",
+    "bento.culture.title": "ТЕАТРАЛЬНІ ТА КОНЦЕРТНІ КВИТКИ",
+    "bento.culture.desc": "Безкоштовний доступ та пільгові квитки у найкращі театри столиці: Національна опера, Театр Франка, Театр Лесі Українки, Молодий театр. Організація легендарних Благодійних медичних балів НМУ.",
+    "bento.culture.admit": "ADMIT ONE • ВІЛЬНИЙ ВХІД",
     "benefits.c1.title": "Юридичний захист",
     "benefits.c1.desc": "Захист прав студентів у разі неправомірних дій, конфліктів на іспитах, заліках чи загрози відрахування. Представництво на засіданнях ректорату та деканатів.",
     "benefits.c1.tag": "Захист прав",
@@ -152,6 +172,10 @@ const I18N = {
     "calc.applyBtn": "ПОДАТИ ЗАЯВУ",
     "calc.reqHeading": "Необхідний пакет документів:",
     "calc.termsLabel": "Вимоги:",
+    "calc.progress.label": "Готовність пакету:",
+    "calc.progress.complete": "✓ Пакет повністю зібрано! Завітайте у каб. 438 або надішліть заявку онлайн.",
+    "calc.progress.tip": "Натискайте на документи, щоб відзначити зібрані довідки:",
+    "calc.progress.counterSuffix": "документів",
 
     // Housing panel
     "calc.housing.title": "ПРОЖИВАННЯ У ГУРТОЖИТКАХ УНІВЕРСИТЕТУ",
@@ -295,7 +319,11 @@ const I18N = {
     // Footer
     "footer.union": "Первинна профспілкова організація студентів",
     "footer.university": "Національний медичний університет імені О.О. Богомольця",
-    "footer.rights": "Всі права захищено."
+    "footer.rights": "Всі права захищено.",
+    "footer.locationLabel": "ГОЛОВНИЙ ОФІС / МОРФОЛОГІЧНИЙ КОРПУС",
+    "footer.timeLabel": "МІСЦЕВИЙ ЧАС (КИЇВ)",
+    "footer.protocolLabel": "СТАТУС СИСТЕМИ",
+    "footer.protocolVal": "SYSTEM OPERATIONAL • 2026"
   },
 
   en: {
@@ -331,7 +359,7 @@ const I18N = {
     "hero.stats.dorms": "Dormitory discounts",
     "hero.stats.clubs": "Student clubs",
 
-    // Hero 3D Card
+    // Hero 3D Card & Digital Pass 2026
     "hero.card.legal": "Full legal defense",
     "hero.card.status": "OFFICIAL STATUS",
     "hero.card.title": "UNIVERSITY STUDENT UNION",
@@ -339,14 +367,32 @@ const I18N = {
     "hero.card.addr": "34 Beresteiskyi Avenue",
     "hero.card.room": "Morph. bldg, room 438",
     "hero.card.head": "Yaroslava Gwazkova",
+    "pass.org": "NMU UNION",
+    "pass.sub": "STUDENT UNION MEMBER PASS",
+    "pass.verified": "VERIFIED · 2026",
+    "pass.cardIdLabel": "MEMBERSHIP ID",
+    "pass.headLabel": "UNION PRESIDENT",
+    "pass.headVal": "Yaroslava Gvazkova",
+    "pass.locationLabel": "HEADQUARTERS",
+    "pass.locationVal": "Room 438, Morph. Bldg",
+    "pass.status": "ACTIVE PASS",
 
     // Marquee
     "marquee.text": "SOCIAL PROTECTION • SCHOLARSHIPS • DORMITORIES • LEGAL DEFENSE • SPORTS • DISCOUNTS • VOLUNTEERING • CULTURE • STUDENT FAMILY",
 
-    // Privileges
+    // Privileges & Bento Grid
     "benefits.tag": "Why Join the Union",
     "benefits.title": "8 KEY PRIVILEGES FOR MEDICAL STUDENTS",
     "benefits.desc": "Union membership guarantees real daily protection and tangible financial privileges throughout your studies at NMU.",
+    "bento.shield.title": "LEGAL & ACADEMIC DEFENSE",
+    "bento.shield.desc": "Comprehensive legal representation for students during grading disputes, risk of unlawful expulsion, or faculty conflicts. A union member cannot be expelled without official Profkom approval.",
+    "bento.shield.badge1": "Expulsion protection",
+    "bento.shield.badge2": "24/7 Rights defense",
+    "bento.shield.badge3": "Rectorate representation",
+    "bento.calcLink": "Calculate document checklist",
+    "bento.culture.title": "THEATRE & CONCERT PASSES",
+    "bento.culture.desc": "Complimentary and discounted tickets to Kyiv's leading stages: National Opera of Ukraine, Franko Theatre, Lesya Ukrainka Theatre, Molodyi Theatre. Plus organization of legendary NMU Charity Balls.",
+    "bento.culture.admit": "ADMIT ONE • FREE ENTRY",
     "benefits.c1.title": "Legal Protection",
     "benefits.c1.desc": "Protection of student rights during credit and examination sessions, grading disputes, or risks of expulsion. Representation at rectorate and dean's meetings.",
     "benefits.c1.tag": "Rights Defense",
@@ -396,6 +442,10 @@ const I18N = {
     "calc.applyBtn": "APPLY NOW",
     "calc.reqHeading": "Required Document Package:",
     "calc.termsLabel": "Requirements:",
+    "calc.progress.label": "Package completeness:",
+    "calc.progress.complete": "✓ Document package complete! Visit Room 438 or submit application online.",
+    "calc.progress.tip": "Click on documents to check off the ones you have ready:",
+    "calc.progress.counterSuffix": "documents",
 
     // Housing panel
     "calc.housing.title": "LIVING IN UNIVERSITY DORMITORIES",
@@ -539,7 +589,11 @@ const I18N = {
     // Footer
     "footer.union": "Primary Trade Union Organization of Students",
     "footer.university": "Bogomolets National Medical University",
-    "footer.rights": "All rights reserved."
+    "footer.rights": "All rights reserved.",
+    "footer.locationLabel": "HEAD OFFICE / MORPHOLOGICAL BUILDING",
+    "footer.timeLabel": "LOCAL TIME (KYIV)",
+    "footer.protocolLabel": "SYSTEM STATUS",
+    "footer.protocolVal": "SYSTEM OPERATIONAL • 2026"
   }
 };
 
@@ -889,8 +943,30 @@ const SCHOLARSHIP_DATA = {
 };
 
 let activeCategory = 'vpo';
+const checkedDocIndices = new Set();
 
-function renderActiveScholarshipCategory() {
+function updateChecklistProgress(totalDocs) {
+  const dict = I18N[currentLang] || I18N.uk;
+  const count = checkedDocIndices.size;
+  const pct = totalDocs > 0 ? Math.round((count / totalDocs) * 100) : 0;
+
+  const counterEl = document.getElementById('checklist-progress-counter');
+  const pctEl = document.getElementById('checklist-progress-pct');
+  const barEl = document.getElementById('checklistProgressBar');
+  const bannerEl = document.getElementById('checklistCompletedBanner');
+
+  const suffix = dict["calc.progress.counterSuffix"] || (currentLang === 'en' ? 'documents' : 'документів');
+  if (counterEl) counterEl.textContent = `${count} / ${totalDocs} ${suffix}`;
+  if (pctEl) pctEl.textContent = `${pct}%`;
+  if (barEl) barEl.style.width = `${pct}%`;
+  if (bannerEl) bannerEl.style.display = (pct === 100 && totalDocs > 0) ? 'flex' : 'none';
+}
+
+function renderActiveScholarshipCategory(resetChecked = false) {
+  if (resetChecked) {
+    checkedDocIndices.clear();
+  }
+
   const langData = SCHOLARSHIP_DATA[currentLang] || SCHOLARSHIP_DATA.uk;
   const data = langData[activeCategory] || langData.vpo;
 
@@ -904,14 +980,45 @@ function renderActiveScholarshipCategory() {
   if (resultTerms) resultTerms.textContent = data.terms;
 
   if (checklistContainer) {
-    checklistContainer.innerHTML = data.documents.map(doc => `
-      <li class="checklist-item">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        <span>${doc}</span>
-      </li>
-    `).join('');
+    checklistContainer.innerHTML = data.documents.map((doc, idx) => {
+      const isChecked = checkedDocIndices.has(idx);
+      return `
+        <li class="checklist-item ${isChecked ? 'checked' : ''}" role="checkbox" aria-checked="${isChecked}" tabindex="0" data-doc-index="${idx}">
+          <div class="checklist-checkbox" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <span class="checklist-text">${doc}</span>
+        </li>
+      `;
+    }).join('');
+
+    checklistContainer.querySelectorAll('.checklist-item').forEach(item => {
+      const toggleItem = () => {
+        const idx = parseInt(item.getAttribute('data-doc-index'), 10);
+        if (checkedDocIndices.has(idx)) {
+          checkedDocIndices.delete(idx);
+          item.classList.remove('checked');
+          item.setAttribute('aria-checked', 'false');
+        } else {
+          checkedDocIndices.add(idx);
+          item.classList.add('checked');
+          item.setAttribute('aria-checked', 'true');
+        }
+        updateChecklistProgress(data.documents.length);
+      };
+
+      item.addEventListener('click', toggleItem);
+      item.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          toggleItem();
+        }
+      });
+    });
+
+    updateChecklistProgress(data.documents.length);
   }
 }
 
@@ -941,11 +1048,11 @@ function initCalculator() {
       catButtons.forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
       activeCategory = btn.getAttribute('data-category') || 'vpo';
-      renderActiveScholarshipCategory();
+      renderActiveScholarshipCategory(true); // reset progress for newly selected category
     });
   });
 
-  renderActiveScholarshipCategory();
+  renderActiveScholarshipCategory(true);
 }
 
 /* ==========================================================================
@@ -1068,3 +1175,83 @@ function initFormHandlers() {
     });
   });
 }
+
+/* ==========================================================================
+   11. HERO DIGITAL PASS 3D TILT PHYSICS & HOLOGRAPHIC GLARE
+   ========================================================================== */
+function initDigitalPass3D() {
+  const wrapper = document.getElementById('heroCardWrapper');
+  const card = document.getElementById('digitalPassCard');
+  const glare = document.getElementById('passHologramGlare');
+  if (!wrapper || !card) return;
+
+  let ticking = false;
+
+  wrapper.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 768) return; // Skip on mobile for ergonomics
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const deltaX = (x - centerX) / centerX;
+    const deltaY = (y - centerY) / centerY;
+
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const rotateY = (deltaX * 12).toFixed(2);
+        const rotateX = (-deltaY * 12).toFixed(2);
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        card.style.boxShadow = `${-deltaX * 15}px ${-deltaY * 15 + 25}px 50px -10px rgba(0, 0, 0, 0.7), 0 0 50px -10px var(--emerald-glow)`;
+
+        if (glare) {
+          const glareX = ((x / rect.width) * 100).toFixed(1);
+          const glareY = ((y / rect.height) * 100).toFixed(1);
+          glare.style.transform = `translate(${glareX - 100}%, ${glareY - 100}%)`;
+        }
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    card.style.boxShadow = '';
+  });
+}
+
+/* ==========================================================================
+   12. REAL-TIME KYIV CLOCK TELEMETRY
+   ========================================================================== */
+function initKyivClock() {
+  const clockEl = document.getElementById('kyivClock');
+  if (!clockEl) return;
+
+  const updateClock = () => {
+    try {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat('uk-UA', {
+        timeZone: 'Europe/Kyiv',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      });
+      const timeStr = formatter.format(now);
+      clockEl.textContent = `KYIV, UA • ${timeStr} • UTC+2`;
+    } catch (e) {
+      const d = new Date();
+      clockEl.textContent = `KYIV, UA • ${d.toLocaleTimeString()} • UTC+2`;
+    }
+  };
+
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+

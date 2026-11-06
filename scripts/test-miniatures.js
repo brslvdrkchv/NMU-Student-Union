@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer-core');
+const path = require('path');
 
 (async () => {
   const browser = await puppeteer.launch({
@@ -10,20 +11,22 @@ const puppeteer = require('puppeteer-core');
   await page.setViewport({ width: 1440, height: 900 });
   await page.goto('http://localhost:8080/index.html', { waitUntil: 'networkidle0' });
 
-  // Scroll to leadership
+  // 1. Leadership in Dark Mode
   await page.evaluate(() => {
-    document.querySelector('#leadership').scrollIntoView();
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('leadership').scrollIntoView();
   });
-  await new Promise(r => setTimeout(r, 500));
-  await page.screenshot({ path: 'test_leadership_miniatures.png' });
+  await new Promise(r => setTimeout(r, 700));
+  const leadSection = await page.$('#leadership');
+  if (leadSection) await leadSection.screenshot({ path: path.join(__dirname, 'test_leadership_dark.png') });
 
-  // Scroll to commissions
+  // 2. Leadership in Light Mode
   await page.evaluate(() => {
-    document.querySelector('#commissions').scrollIntoView();
+    document.documentElement.setAttribute('data-theme', 'light');
   });
   await new Promise(r => setTimeout(r, 500));
-  await page.screenshot({ path: 'test_commissions_miniatures.png' });
+  if (leadSection) await leadSection.screenshot({ path: path.join(__dirname, 'test_leadership_light.png') });
 
   await browser.close();
-  console.log('Screenshots saved successfully');
+  console.log('Successfully captured leadership section in dark and light modes!');
 })();

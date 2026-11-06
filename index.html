@@ -32,6 +32,9 @@
 </head>
 <body>
 
+  <!-- Analog Micro-Noise Texture Overlay (Anti-Banding Luxury Finish) -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
   <!-- Ambient Light Mesh Background -->
   <div class="ambient-bg" aria-hidden="true">
     <div class="ambient-orb ambient-orb-1"></div>
@@ -220,38 +223,74 @@
           </div>
         </div>
 
-        <!-- 3D Perspective Glass Card Stack -->
+        <!-- Digital Union Pass 2026 (Interactive 3D Holographic NFC Card) -->
         <div class="hero-visual-col reveal-item delay-2">
-          <div class="hero-card-stack">
-            <div class="glass-card stack-layer-main">
+          <div class="hero-card-stack" id="heroCardWrapper">
+            <div class="digital-pass-card" id="digitalPassCard">
+              <div class="pass-hologram-glare" id="passHologramGlare"></div>
               <img src="./assets/images/nmu_logo_white.svg" alt="NMU Seal" class="seal-watermark">
               
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
-                <img src="./assets/images/profkom_logo_transparent.png" alt="Профком" style="width: 58px; height: 58px;">
-                <span class="status-badge" style="background: rgba(0,0,0,0.4); border-color: var(--border-subtle);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <!-- Pass Top Bar: Union Logo + NFC Wave -->
+              <div class="pass-top-bar">
+                <div class="pass-identity">
+                  <img src="./assets/images/profkom_logo_transparent.png" alt="Профком" class="pass-logo">
+                  <div class="pass-id-titles">
+                    <span class="pass-org-name font-druk" data-i18n="pass.org">ПРОФКОМ НМУ</span>
+                    <span class="pass-org-sub" data-i18n="pass.sub">STUDENT UNION MEMBER PASS</span>
+                  </div>
+                </div>
+                <div class="pass-nfc-badge" title="NFC Contactless">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 8a9 9 0 0 1 12 0"></path>
+                    <path d="M8.5 11.5a5.5 5.5 0 0 1 7 0"></path>
+                    <path d="M11 15a2 2 0 0 1 2 0"></path>
                   </svg>
-                  <span data-i18n="hero.card.legal">Повний правовий захист</span>
-                </span>
+                </div>
               </div>
 
-              <div class="section-tag" style="margin-bottom: 12px;" data-i18n="hero.card.status">ОФІЦІЙНИЙ СТАТУС</div>
-              <h2 class="font-druk" style="font-size: 1.35rem; color: var(--heading-color); margin-bottom: 14px;" data-i18n="hero.card.title">
-                ППО СТУДЕНТІВ УНІВЕРСИТЕТУ
-              </h2>
-              <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 24px;" data-i18n="hero.card.desc">
-                Діє на основі Закону України «Про професійні спілки, їх права та гарантії діяльності» та Статуту Київської міської профспілки працівників охорони здоров'я.
-              </p>
-
-              <div style="padding-top: 20px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
-                <div class="status-badge" style="background: rgba(16, 185, 129, 0.08);">
-                  <span class="status-indicator"></span>
-                  <span data-i18n="hero.card.addr">Берестейський проспект, 34</span>
+              <!-- Metallic EMV Microchip & Security Seal -->
+              <div class="pass-chip-row">
+                <div class="pass-chip" aria-hidden="true">
+                  <div class="chip-line chip-l1"></div>
+                  <div class="chip-line chip-l2"></div>
+                  <div class="chip-line chip-l3"></div>
+                  <div class="chip-core"></div>
                 </div>
-                <div style="text-align: right;">
-                  <div style="font-weight: 700; color: var(--emerald-bright);" data-i18n="hero.card.room">Морф. корпус, каб. 438</div>
-                  <div style="color: var(--text-muted); font-size: 0.78rem;" data-i18n="hero.card.head">Ґвазкова Ярослава</div>
+                <div class="pass-security-seal">
+                  <span class="status-indicator"></span>
+                  <span class="pass-seal-text" data-i18n="pass.verified">VERIFIED · 2026</span>
+                </div>
+              </div>
+
+              <!-- Pass Main Body: Card Number & Credentials -->
+              <div class="pass-body">
+                <div class="pass-serial-wrap">
+                  <span class="pass-label" data-i18n="pass.cardIdLabel">MEMBERSHIP ID</span>
+                  <div class="pass-card-number font-druk">NMU · 2026 · 0438 · PRF</div>
+                </div>
+                
+                <div class="pass-meta-grid">
+                  <div>
+                    <span class="pass-label" data-i18n="pass.headLabel">ГОЛОВА ПРОФКОМУ</span>
+                    <div class="pass-value" data-i18n="pass.headVal">Ґвазкова Ярослава</div>
+                  </div>
+                  <div>
+                    <span class="pass-label" data-i18n="pass.locationLabel">ШТАБ-КВАРТИРА</span>
+                    <div class="pass-value" data-i18n="pass.locationVal">Каб. 438, Морф. корпус</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pass Bottom Bar: Barcode Strip & Active Status Pill -->
+              <div class="pass-bottom-bar">
+                <div class="pass-barcode-wrap" aria-hidden="true">
+                  <div class="pass-barcode">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <span class="pass-barcode-text">UA-NMU-BOGOMOLETS-2026</span>
+                </div>
+                <div class="pass-status-pill">
+                  <span data-i18n="pass.status">ДІЙСНИЙ КВИТОК</span>
                 </div>
               </div>
             </div>
@@ -283,95 +322,152 @@
           </p>
         </div>
 
-        <div class="benefits-grid">
-          <!-- Card 1 -->
-          <div class="glass-card benefit-card reveal-item delay-1">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="bento-grid">
+          <!-- Bento Card 1 (Span 2): Legal Defense & Academic Sovereignty -->
+          <div class="glass-card bento-card bento-span-2 bento-card-legal reveal-item delay-1">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 </svg>
               </div>
-              <h3 class="benefit-title" data-i18n="benefits.c1.title">Юридичний захист</h3>
-              <p class="benefit-desc" data-i18n="benefits.c1.desc">
-                Захист прав студентів у разі неправомірних дій, конфліктів на іспитах, заліках чи загрози відрахування. Представництво на засіданнях ректорату та деканатів.
-              </p>
+              <div class="bento-badge-group">
+                <span class="status-badge" style="background: rgba(16, 185, 129, 0.12);">
+                  <span class="status-indicator"></span>
+                  <span data-i18n="bento.shield.badge2">24/7 Захист прав</span>
+                </span>
+                <span class="benefit-tag" data-i18n="benefits.c1.tag">Захист прав</span>
+              </div>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c1.tag">Захист прав</span>
+            <div class="bento-content">
+              <h3 class="bento-title font-druk" data-i18n="bento.shield.title">ЮРИДИЧНИЙ ТА АКАДЕМІЧНИЙ ЗАХИСТ</h3>
+              <p class="bento-desc" data-i18n="bento.shield.desc">
+                Повне правове представництво студентів при виникненні спірних ситуацій, загрозі неправомірного відрахування, конфліктах на іспитах та заліках. Член профспілки не може бути відрахований без офіційної згоди Профкому.
+              </p>
+              <div class="bento-shield-pills">
+                <span class="shield-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="bento.shield.badge1">Захист від відрахування</span>
+                </span>
+                <span class="shield-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span data-i18n="bento.shield.badge3">Представництво в ректораті</span>
+                </span>
+                <span class="shield-pill">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Каб. 438 Морф. корпусу</span>
+                </span>
+              </div>
+            </div>
           </div>
 
-          <!-- Card 2 -->
-          <div class="glass-card benefit-card reveal-item delay-2">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Bento Card 2: Social Scholarships -->
+          <div class="glass-card bento-card reveal-item delay-2">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
               </div>
+              <span class="benefit-tag" data-i18n="benefits.c2.tag">Фінансова опора</span>
+            </div>
+            <div class="bento-content">
+              <div class="bento-stat-chip">Постанова КМУ №1045</div>
               <h3 class="benefit-title" data-i18n="benefits.c2.title">Соціальні стипендії</h3>
               <p class="benefit-desc" data-i18n="benefits.c2.desc">
                 Повний документальний супровід та консультації щодо нарахування державних соціальних стипендій для ВПО, дітей УБД, сиріт та осіб з інвалідністю.
               </p>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c2.tag">Фінансова опора</span>
+            <a href="#services" class="bento-card-link">
+              <span data-i18n="bento.calcLink">Розрахувати пакет</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
           </div>
 
-          <!-- Card 3 -->
-          <div class="glass-card benefit-card reveal-item delay-3">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Bento Card 3: Housing & Dormitory Discounts -->
+          <div class="glass-card bento-card reveal-item delay-3">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                   <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg>
+              </div>
+              <span class="benefit-tag" data-i18n="benefits.c3.tag">Побут та житло</span>
+            </div>
+            <div class="bento-content">
+              <div class="housing-discounts-badges">
+                <span class="housing-pill free">100% БЕЗКОШТОВНО</span>
+                <span class="housing-pill disc">49% ЗНИЖКА</span>
               </div>
               <h3 class="benefit-title" data-i18n="benefits.c3.title">Пільги на гуртожитки</h3>
               <p class="benefit-desc" data-i18n="benefits.c3.desc">
                 Оформлення 49% знижки на оплату проживання у гуртожитках для ВПО та 100% звільнення від оплати для пільгових категорій. Контроль побуту.
               </p>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c3.tag">Побут та житло</span>
           </div>
 
-          <!-- Card 4 -->
-          <div class="glass-card benefit-card reveal-item delay-4">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
-                </svg>
+          <!-- Bento Card 4 (Span 2): Cultural Life & Ticket Stub -->
+          <div class="glass-card bento-card bento-span-2 bento-card-tickets reveal-item delay-4">
+            <div class="ticket-stub-body">
+              <div class="bento-card-header">
+                <div class="benefit-icon-box bento-icon-box">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+                  </svg>
+                </div>
+                <div class="bento-badge-group">
+                  <span class="ticket-status-stamp" data-i18n="bento.culture.admit">ADMIT ONE • ВІЛЬНИЙ ВХІД</span>
+                  <span class="benefit-tag" data-i18n="benefits.c4.tag">Дозвілля</span>
+                </div>
               </div>
-              <h3 class="benefit-title" data-i18n="benefits.c4.title">Квитки та культура</h3>
-              <p class="benefit-desc" data-i18n="benefits.c4.desc">
-                Безкоштовні та пільгові квитки у провідні театри Києва, кіно, на концерти, організація легендарних благодійних балів НМУ та творчих вечорів.
-              </p>
+              <div class="bento-content">
+                <h3 class="bento-title font-druk" data-i18n="bento.culture.title">ТЕАТРАЛЬНІ ТА КОНЦЕРТНІ КВИТКИ</h3>
+                <p class="bento-desc" data-i18n="bento.culture.desc">
+                  Безкоштовний доступ та пільгові квитки у найкращі театри столиці: Національна опера, Театр Франка, Театр Лесі Українки, Молодий театр. Організація легендарних Благодійних медичних балів НМУ.
+                </p>
+                <div class="theatre-roster">
+                  <span class="theatre-tag">Нац. опера України</span>
+                  <span class="theatre-tag">Театр ім. І. Франка</span>
+                  <span class="theatre-tag">Молодий театр</span>
+                  <span class="theatre-tag">Благодійні бали НМУ</span>
+                </div>
+              </div>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c4.tag">Дозвілля</span>
+            <!-- Perforated Stub Edge Visual -->
+            <div class="ticket-perforated-edge" aria-hidden="true">
+              <div class="ticket-punch-notch ticket-notch-top"></div>
+              <div class="ticket-perf-dots"></div>
+              <div class="ticket-punch-notch ticket-notch-bottom"></div>
+            </div>
           </div>
 
-          <!-- Card 5 -->
-          <div class="glass-card benefit-card reveal-item delay-1">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Bento Card 5: Emergency Financial Aid -->
+          <div class="glass-card bento-card reveal-item delay-1">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <path d="M12 6v12M8 10h8"></path>
                 </svg>
               </div>
+              <span class="benefit-tag" data-i18n="benefits.c5.tag">Грошова підтримка</span>
+            </div>
+            <div class="bento-content">
+              <div class="bento-stat-chip">Одноразові виплати</div>
               <h3 class="benefit-title" data-i18n="benefits.c5.title">Матеріальна допомога</h3>
               <p class="benefit-desc" data-i18n="benefits.c5.desc">
                 Одноразові грошові виплати членам профспілки у зв'язку зі скрутним матеріальним становищем, хворобою, лікуванням або особливими життєвими подіями.
               </p>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c5.tag">Грошова підтримка</span>
           </div>
 
-          <!-- Card 6 -->
-          <div class="glass-card benefit-card reveal-item delay-2">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Bento Card 6: Sports & Spartan Race -->
+          <div class="glass-card bento-card reveal-item delay-2">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
                   <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
                   <path d="M4 22h16"></path>
@@ -379,47 +475,61 @@
                   <path d="M6 4h12a2 2 0 0 1 2 2v3a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6V6a2 2 0 0 1 2-2z"></path>
                 </svg>
               </div>
+              <span class="benefit-tag" data-i18n="benefits.c6.tag">Активне життя</span>
+            </div>
+            <div class="bento-content">
+              <div class="bento-stat-chip">Spartan Race & Кубки</div>
               <h3 class="benefit-title" data-i18n="benefits.c6.title">Спорт та здоров'я</h3>
               <p class="benefit-desc" data-i18n="benefits.c6.desc">
                 Організація турнірів з міні-футболу, волейболу, настільного тенісу, підтримка університетських збірних, участь у Spartan Race та благодійних забігах.
               </p>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c6.tag">Активне життя</span>
           </div>
 
-          <!-- Card 7 -->
-          <div class="glass-card benefit-card reveal-item delay-3">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Bento Card 7: 7 Student Interest Clubs -->
+          <div class="glass-card bento-card reveal-item delay-3">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                   <circle cx="9" cy="7" r="4"></circle>
                   <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </div>
+              <span class="benefit-tag" data-i18n="benefits.c7.tag">Студентська родина</span>
+            </div>
+            <div class="bento-content">
+              <div class="club-micro-pills">
+                <span>Мафія</span>
+                <span>Дебати в укритті</span>
+                <span>True Crime</span>
+                <span>Кіноклуб</span>
+              </div>
               <h3 class="benefit-title" data-i18n="benefits.c7.title">7 Клубів за інтересами</h3>
               <p class="benefit-desc" data-i18n="benefits.c7.desc">
                 Мафія, дебати в укритті морфологічного корпусу, книжковий та кіноклуб, True Crime спільнота, театральна студія та волонтерські ініціативи.
               </p>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c7.tag">Студентська родина</span>
           </div>
 
-          <!-- Card 8 -->
-          <div class="glass-card benefit-card reveal-item delay-4">
-            <div class="benefit-top">
-              <div class="benefit-icon-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <!-- Bento Card 8: Leadership & Project Grants -->
+          <div class="glass-card bento-card reveal-item delay-4">
+            <div class="bento-card-header">
+              <div class="benefit-icon-box bento-icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                 </svg>
               </div>
+              <span class="benefit-tag" data-i18n="benefits.c8.tag">Розвиток кар'єри</span>
+            </div>
+            <div class="bento-content">
+              <div class="bento-stat-chip">Інкубатор ініціатив</div>
               <h3 class="benefit-title" data-i18n="benefits.c8.title">Лідерство та ініціативи</h3>
               <p class="benefit-desc" data-i18n="benefits.c8.desc">
                 Прямий вплив на процеси в університеті. Можливість реалізувати власний культурний чи соціальний проєкт із повною підтримкою команди Профкому.
               </p>
             </div>
-            <span class="benefit-tag" data-i18n="benefits.c8.tag">Розвиток кар'єри</span>
           </div>
         </div>
       </div>
@@ -504,11 +614,38 @@
                 <strong data-i18n="calc.termsLabel">Вимоги:</strong> <span id="scholarship-terms">Денна форма навчання за державним замовленням, відсутність академічної заборгованості.</span>
               </div>
 
+              <!-- Live Interactive Document Checklist Progress -->
+              <div class="checklist-progress-card" id="checklistProgressCard">
+                <div class="checklist-progress-header">
+                  <span class="checklist-progress-label">
+                    <span data-i18n="calc.progress.label">Готовність пакету:</span>
+                    <strong id="checklist-progress-counter">0 / 6 документів</strong>
+                  </span>
+                  <span class="checklist-progress-pct font-druk" id="checklist-progress-pct">0%</span>
+                </div>
+                <div class="checklist-progress-track">
+                  <div class="checklist-progress-bar" id="checklistProgressBar" style="width: 0%;"></div>
+                </div>
+                <div class="checklist-completed-banner" id="checklistCompletedBanner" style="display: none;">
+                  <span class="status-indicator"></span>
+                  <span data-i18n="calc.progress.complete">✓ Пакет повністю зібрано! Завітайте у каб. 438 або надішліть заявку онлайн.</span>
+                </div>
+              </div>
+
+              <div class="checklist-tip-strip">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="16" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span data-i18n="calc.progress.tip">Натискайте на документи, щоб відзначити зібрані довідки:</span>
+              </div>
+
               <h5 style="font-size: 0.9rem; font-weight: 700; color: var(--heading-color); margin-bottom: 12px; text-transform: uppercase;" data-i18n="calc.reqHeading">
                 Необхідний пакет документів:
               </h5>
-              <ul class="checklist-items" id="scholarship-checklist-items">
-                <!-- Populated via JS -->
+              <ul class="checklist-items" id="scholarship-checklist-items" role="group" aria-label="Чекліст документів">
+                <!-- Populated via JS with interactive items -->
               </ul>
             </div>
           </div>
@@ -1102,6 +1239,25 @@
           <a href="#leadership" data-i18n="nav.leadership">Команда</a>
           <a href="#commissions" data-i18n="nav.commissions">Комісії</a>
           <a href="#clubs" data-i18n="nav.clubs">Клуби</a>
+        </div>
+      </div>
+
+      <!-- Luxury Agency Technical Telemetry Strip -->
+      <div class="footer-technical-strip">
+        <div class="footer-tech-col">
+          <span class="footer-tech-label" data-i18n="footer.locationLabel">ГОЛОВНИЙ ОФІС / МОРФОЛОГІЧНИЙ КОРПУС</span>
+          <span class="footer-tech-val">50°27'02.3"N 30°27'09.1"E • Берестейський просп., 34, Каб. 438</span>
+        </div>
+        <div class="footer-tech-col">
+          <span class="footer-tech-label" data-i18n="footer.timeLabel">МІСЦЕВИЙ ЧАС (КИЇВ)</span>
+          <span class="footer-tech-val font-mono" id="kyivClock">KYIV, UA • --:--:-- • UTC+2</span>
+        </div>
+        <div class="footer-tech-col">
+          <span class="footer-tech-label" data-i18n="footer.protocolLabel">СТАТУС СИСТЕМИ</span>
+          <span class="footer-tech-val">
+            <span class="status-indicator" style="display: inline-block; vertical-align: middle; margin-right: 6px;"></span>
+            <span data-i18n="footer.protocolVal">SYSTEM OPERATIONAL • 2026</span>
+          </span>
         </div>
       </div>
 
